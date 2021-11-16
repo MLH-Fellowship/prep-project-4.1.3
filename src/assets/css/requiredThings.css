@@ -1,3 +1,7 @@
+.required-things-container {
+	margin: 2rem;
+}
+
 .required-things {
 	position: relative;
 	display: flex;

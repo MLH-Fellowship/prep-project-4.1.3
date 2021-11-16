@@ -1,9 +1,9 @@
 .required-things {
     position: relative;
     display: flex;
-    justify-content: space-between;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: space-around;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .required-things .card-item {

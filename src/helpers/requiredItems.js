@@ -1,83 +1,62 @@
 import Raincoat from '../assets/img/Raincoat.png';
-import Watch from '../assets/img/Watch.png';
 import Flashlight from '../assets/img/Flashlight.png';
 
 const requiredItems = {
 	Thunderstorm: {
 		Raincoat: Raincoat,
-		Watch: Watch,
+		Towel: Towel,
 		Flashlight: Flashlight,
+		Sanitation: Sanitation,
+		'Water Resistant Bagpack': WaterResistantBagpack,
+		'Waterproof Boots': WaterproofBoots,
 	},
 	Drizzle: {
 		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Towel: Towel,
+		'Waterproof Boots': WaterproofBoots,
+		Umbrella: Umbrella,
 	},
 	Rain: {
 		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Towel: Towel,
+		'Water Resistant Bagpack': WaterResistantBagpack,
+		'Waterproof Boots': WaterproofBoots,
+		Umbrella: Umbrella,
 	},
 	Snow: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Scarf: Scarf,
+		HeadCap: HeadCap,
+		Sunglasses: Sunglasses,
+		Gloves: Gloves,
+		Socks: Socks,
+		Jacket: Jacket,
 	},
-	Mist: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
-	},
+	Mist: {},
 	Smoke: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Mask: Mask,
 	},
 	Haze: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Mask: Mask,
 	},
 	Dust: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Mask: Mask,
 	},
-	Fog: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
-	},
+	Fog: {},
 	Sand: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Mask: Mask,
+		Goggles: Goggles,
+		'Sand Scarf': SandScarf,
 	},
 	Ash: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
+		Mask: Mask,
 	},
-	Squall: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
-	},
+	Squall: {},
 	Tornado: {
-		Raincoat: Raincoat,
-		Watch: Watch,
+		Sanitation: Sanitation,
 		Flashlight: Flashlight,
 	},
-	Clear: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
-	},
-	Clouds: {
-		Raincoat: Raincoat,
-		Watch: Watch,
-		Flashlight: Flashlight,
-	},
+	Clear: {},
+	Clouds: {},
 };
 
 export default requiredItems;

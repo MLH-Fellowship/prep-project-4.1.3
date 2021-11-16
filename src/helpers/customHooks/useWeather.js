@@ -85,7 +85,6 @@ const useWeather = () => {
     results,
     isLoaded,
     setCity,
-    setResults,
     setIsLoaded,
     error,
   };

@@ -2,7 +2,7 @@ import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 
 const App = () => {
-  const { city, results, isLoaded, setCity, setResults, setIsLoaded, error } =
+  const { city, results, isLoaded, setCity, setIsLoaded, error } =
     useWeather();
 
   if (error) return <div>Error: {error.message}</div>;

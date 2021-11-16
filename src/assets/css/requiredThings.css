@@ -64,6 +64,7 @@
 }
 
 .required-things .card-item .face.face1 .content img{
+    height: 75%;
     max-width: 100px;
     position: absolute;
     top: 50%;

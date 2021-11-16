@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import logo from './assets/img/mlh-prep.png';
+import RequiredThings from './components/RequiredThings';
 
 const App = () => {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [city, setCity] = useState('New York City');
+	const [city, setCity] = useState('London');
 	const [results, setResults] = useState(null);
 
 	useEffect(() => {
@@ -60,6 +61,7 @@ const App = () => {
 					)}
 				</div>
 			</div>
+			{isLoaded && results && <RequiredThings results={results} />}
 		</>
 	);
 };

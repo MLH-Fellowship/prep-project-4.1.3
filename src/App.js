@@ -5,7 +5,7 @@ import RequiredThings from './components/RequiredThings';
 const App = () => {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [city, setCity] = useState('London');
+	const [city, setCity] = useState('New York');
 	const [results, setResults] = useState(null);
 
 	useEffect(() => {
@@ -45,11 +45,11 @@ const App = () => {
 					value={city}
 					onChange={(event) => setCity(event.target.value)}
 				/>
-				<div className='Results'>
-					{!isLoaded && <h2>Loading...</h2>}
-					{console.log(results)}
-					{isLoaded && results && (
-						<>
+				{!isLoaded && <h2>Loading...</h2>}
+				{console.log(results)}
+				{isLoaded && results && (
+					<>
+						<div className='Results'>
 							<h3>{results.weather[0].main}</h3>
 							<p>Feels like {results.main.feels_like}°C</p>
 							<i>
@@ -57,11 +57,11 @@ const App = () => {
 									{results.name}, {results.sys.country}
 								</p>
 							</i>
-						</>
-					)}
-				</div>
+						</div>
+						<RequiredThings results={results} />
+					</>
+				)}
 			</div>
-			{isLoaded && results && <RequiredThings results={results} />}
 		</>
 	);
 };

@@ -9,19 +9,27 @@ const RequiredThings = (props) => {
 	}, [props.results.weather[0].main]);
 
 	return (
-		<div className='required-things'>
-			<h1>Don't forget to bring your</h1>
-			<div className='cards'>
-				{Object.keys(items).map((item, i) => (
-					<div key={i} className='card-item'>
-						<h1>{item}</h1>
-						<div className='card-item-image'>
-							<img src={items[item]} />
+		<>
+		<h1>Don't forget to bring your</h1>
+		<div class="required-things">
+			{Object.keys(items).map((item, i) => (
+				<div class="card-item">
+					<div class="face face1">
+						<div class="content">
+							<div class="icon">
+								<img src={items[item]} />
+							</div>
 						</div>
 					</div>
-				))}
-			</div>
+					<div class="face face2">
+						<div class="content">
+							<h3>{item}</h3>
+						</div>
+					</div>
+				</div>
+			))}
 		</div>
+		</>
 	);
 };
 

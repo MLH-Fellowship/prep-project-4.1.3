@@ -10,25 +10,27 @@ const RequiredThings = (props) => {
 
 	return (
 		<>
-		<h1>Don't forget to bring your</h1>
-		<div class="required-things">
-			{Object.keys(items).map((item, i) => (
-				<div class="card-item">
-					<div class="face face1">
-						<div class="content">
-							<div class="icon">
-								<img src={items[item]} />
+			{Object.keys(items).length > 0 && (
+				<h1>Don't forget to bring your</h1>
+			)}
+			<div className="required-things">
+				{Object.keys(items).map((item, i) => (
+					<div className="card-item">
+						<div className="face face1">
+							<div className="content">
+								<div className="icon">
+									<img src={items[item]} />
+								</div>
+							</div>
+						</div>
+						<div className="face face2">
+							<div className="content">
+								<h3>{item}</h3>
 							</div>
 						</div>
 					</div>
-					<div class="face face2">
-						<div class="content">
-							<h3>{item}</h3>
-						</div>
-					</div>
-				</div>
-			))}
-		</div>
+				))}
+			</div>
 		</>
 	);
 };

@@ -1,5 +1,19 @@
 import Raincoat from '../assets/img/Raincoat.png';
+import Towel from '../assets/img/Towel.png';
+import Sanitation from '../assets/img/Sanitation.png';
+import WaterResistantBagpack from '../assets/img/WaterResistantBagpack.png';
+import WaterproofBoots from '../assets/img/WaterproofBoots.png';
+import Umbrella from '../assets/img/Umbrella.png';
+import Scarf from '../assets/img/Scarf.png';
+import Cap from '../assets/img/Cap.png';
+import Sunglasses from '../assets/img/Sunglasses.png';
+import Gloves from '../assets/img/Gloves.png';
+import Socks from '../assets/img/Socks.png';
+import Mask from '../assets/img/Mask.png';
+import Goggles from '../assets/img/Goggles.png';
+import SandScarf from '../assets/img/Scarf.png';
 import Flashlight from '../assets/img/Flashlight.png';
+import Jacket from '../assets/img/Jacket.png';
 
 const requiredItems = {
 	Thunderstorm: {
@@ -25,7 +39,7 @@ const requiredItems = {
 	},
 	Snow: {
 		Scarf: Scarf,
-		HeadCap: HeadCap,
+		Cap: Cap,
 		Sunglasses: Sunglasses,
 		Gloves: Gloves,
 		Socks: Socks,

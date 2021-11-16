@@ -61,6 +61,7 @@ const App = () => {
           )}
         </div>
       </div>
+
       <MyMap />
     </>
   );

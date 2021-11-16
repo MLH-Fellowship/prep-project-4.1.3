@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import logo from './assets/img/mlh-prep.png';
+import MyMap from './components/MyMap'
 
 const App = () => {
 	const [error, setError] = useState(null);
@@ -10,10 +11,10 @@ const App = () => {
 	useEffect(() => {
 		fetch(
 			'https://api.openweathermap.org/data/2.5/weather?q=' +
-				city +
-				'&units=metric' +
-				'&appid=' +
-				process.env.REACT_APP_APIKEY
+			city +
+			'&units=metric' +
+			'&appid=' +
+			process.env.REACT_APP_APIKEY
 		)
 			.then((res) => res.json())
 			.then(
@@ -60,6 +61,7 @@ const App = () => {
 					)}
 				</div>
 			</div>
+			<MyMap />
 		</>
 	);
 };

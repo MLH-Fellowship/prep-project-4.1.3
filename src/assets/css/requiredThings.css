@@ -6,8 +6,9 @@
 	position: relative;
 	display: flex;
 	justify-content: space-around;
-	margin-left: 15%;
-	margin-right: 15%;
+	flex-wrap: wrap;
+	margin-left: 5%;
+	margin-right: 5%;
 	min-height: 30vh;
 }
 

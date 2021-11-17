@@ -38,14 +38,16 @@ const App = () => {
                 </p>
               </i>
             </div>
-            <RequiredThings results={results} />
 
             <MyMap
               lon={results?.coord?.lon}
               lat={results?.coord?.lat}
               name={results?.name}
               fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
+              temp={results?.main.feels_like}
             />
+
+            <RequiredThings results={results} />
           </>
         )}
       </div>

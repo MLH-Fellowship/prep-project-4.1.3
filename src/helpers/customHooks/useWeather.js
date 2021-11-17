@@ -77,6 +77,9 @@ const useWeather = () => {
             } else {
               setIsLoaded(true);
               setResults(result);
+
+              // Scroll To Top if request is successful
+              window.scrollTo(0, 0);
             }
           },
           (error) => {
@@ -87,6 +90,22 @@ const useWeather = () => {
     }
   }, [debouncedSearchTerm]);
 
+  function fetchWeatherUsingCoordinates({ lat, lng }) {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_APIKEY}`
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCity(result.name);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }
+
   return {
     city,
     results,
@@ -94,6 +113,7 @@ const useWeather = () => {
     setCity,
     setIsLoaded,
     error,
+    fetchWeatherUsingCoordinates,
   };
 };
 

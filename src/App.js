@@ -4,7 +4,14 @@ import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
 
 const App = () => {
-  const { city, results, isLoaded, setCity, error } = useWeather();
+  const {
+    city,
+    results,
+    isLoaded,
+    setCity,
+    error,
+    fetchWeatherUsingCoordinates,
+  } = useWeather();
 
   if (error) return <div>Error: {error.message}</div>;
 
@@ -19,7 +26,7 @@ const App = () => {
           onChange={(event) => setCity(event.target.value)}
         />
         {!isLoaded && <h2>Loading...</h2>}
-        {console.log(results)}
+
         {isLoaded && results && (
           <>
             <div className="Results">
@@ -37,6 +44,7 @@ const App = () => {
               lon={results?.coord?.lon}
               lat={results?.coord?.lat}
               name={results?.name}
+              fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
             />
           </>
         )}

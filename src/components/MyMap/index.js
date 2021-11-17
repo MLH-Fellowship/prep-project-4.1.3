@@ -1,29 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvent,
+} from "react-leaflet";
 
 const zoom = 13;
 
-const MyMap = ({ lon, lat, name }) => {
-  const [coordinates, setCoordinates] = useState({
-    lat: "",
-    lon: "",
+function LocationMarker({ center, name, fetchWeatherUsingCoordinates }) {
+  const [position, setPosition] = useState(center);
+
+  const map = useMapEvent("click", (e) => {
+    console.log({ e, map });
+    setPosition(e.latlng);
+
+    fetchWeatherUsingCoordinates(e.latlng);
   });
-  const [map, setMap] = useState(null);
+
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>{name}</Popup>
+    </Marker>
+  );
+}
+
+const MyMap = ({ lon, lat, name, fetchWeatherUsingCoordinates }) => {
+  const [map, setMap] = useState();
+
+  const [position, setPosition] = useState({
+    lat: lat,
+    lng: lon,
+  });
 
   useEffect(() => {
     if (lat && lon) {
-      setCoordinates({ lat, lon });
+      setPosition({ lat, lng: lon });
     }
   }, [lat, lon]);
 
   useEffect(() => {
-    const mapCenter = [coordinates.lat, coordinates.lon];
+    const mapCenter = [position.lat, position.lng];
     if (map) {
       map.setView(mapCenter, zoom);
     }
-  }, [map, coordinates]);
+  }, [map, position]);
 
-  const mapCenter = [coordinates.lat, coordinates.lon];
+  const mapCenter = [position.lat, position.lng];
 
   const displayMap = (
     <MapContainer
@@ -39,9 +63,11 @@ const MyMap = ({ lon, lat, name }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <Marker position={[coordinates.lat, coordinates.lon]}>
-        <Popup>{name}</Popup>
-      </Marker>
+      <LocationMarker
+        center={position}
+        name={name}
+        fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
+      />
     </MapContainer>
   );
 

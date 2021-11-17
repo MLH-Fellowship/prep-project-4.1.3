@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 const zoom = 13;
 
-const MyMap = ({ lon, lat, name }) => {
+const MyMap = ({ lon, lat, name, temp }) => {
   const [coordinates, setCoordinates] = useState({
     lat: "",
     lon: "",
@@ -40,7 +40,12 @@ const MyMap = ({ lon, lat, name }) => {
       />
 
       <Marker position={[coordinates.lat, coordinates.lon]}>
-        <Popup>{name}</Popup>
+        <Popup>
+          <div className="MyMap-popup-container">
+            <h2>{name}</h2>
+            <h3>{temp}°C</h3>
+          </div>
+        </Popup>
       </Marker>
     </MapContainer>
   );

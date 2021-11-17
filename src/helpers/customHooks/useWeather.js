@@ -36,7 +36,7 @@ const useWeather = () => {
 
     function onError(error) {
       toast.configure();
-      toast.error("Location access denied.", {
+      toast.error("Location access denied!", {
         theme: "light",
         hideProgressBar: false,
         closeButton: true,

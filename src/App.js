@@ -1,37 +1,10 @@
-import { useEffect, useState } from 'react';
 import logo from './assets/img/mlh-prep.png';
 import SearchOption from './helpers/SearchOption/SearchOption';
+import useWeather from './helpers/customHooks/useWeather';
+import RequiredThings from './components/RequiredThings';
 
 const App = () => {
-	const [error, setError] = useState(null);
-	const [isLoaded, setIsLoaded] = useState(false);
-	const [city, setCity] = useState('New York City');
-	const [results, setResults] = useState(null);
-
-	useEffect(() => {
-		fetch(
-			'https://api.openweathermap.org/data/2.5/weather?q=' +
-				city +
-				'&units=metric' +
-				'&appid=' +
-				process.env.REACT_APP_APIKEY
-		)
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					if (result['cod'] !== 200) {
-						setIsLoaded(false);
-					} else {
-						setIsLoaded(true);
-						setResults(result);
-					}
-				},
-				(error) => {
-					setIsLoaded(true);
-					setError(error);
-				}
-			);
-	}, [city]);
+	const { city, results, isLoaded, setCity, setIsLoaded, error } = useWeather();
 
 	if (error) return <div>Error: {error.message}</div>;
 
@@ -41,11 +14,11 @@ const App = () => {
 			<div>
 				<h2>Enter a city below 👇</h2>
 				<SearchOption city={city} onChange={(event) => setCity(event.target.value)} />
-				<div className='Results'>
-					{!isLoaded && <h2>Loading...</h2>}
-					{console.log(results)}
-					{isLoaded && results && (
-						<>
+				{!isLoaded && <h2>Loading...</h2>}
+				{console.log(results)}
+				{isLoaded && results && (
+					<>
+						<div className='Results'>
 							<h3>{results.weather[0].main}</h3>
 							<p>Feels like {results.main.feels_like}°C</p>
 							<i>
@@ -53,9 +26,10 @@ const App = () => {
 									{results.name}, {results.sys.country}
 								</p>
 							</i>
-						</>
-					)}
-				</div>
+						</div>
+						<RequiredThings results={results} />
+					</>
+				)}
 			</div>
 		</>
 	);

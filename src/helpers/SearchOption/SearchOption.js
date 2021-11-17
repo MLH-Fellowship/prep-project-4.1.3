@@ -48,7 +48,7 @@ export default class SearchOption extends React.Component {
                 onSearch={(record) => this.autocompleteCity(record)}
                 autoFocus
                 useCaching={false}
-                placeholder="Start typing city name here"
+                placeholder="Type name of city here!!"
                 />
             </header>
             </div>

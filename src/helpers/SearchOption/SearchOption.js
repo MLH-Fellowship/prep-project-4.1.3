@@ -27,8 +27,9 @@ export default class SearchOption extends React.Component {
             const set = result?.items?.map((item) => `${item.address.city}, ${item.address.state}, ${item.address.countryCode}`);
             const cities = [...new Set(set)];
 
-            let tempcities = [];
-            var id = 0;
+            // in case there are no suggestions, the input text can still be selected.
+            let tempcities = [{id: 0, name: city}];
+            var id = 1;
             cities.forEach((city) => {
                 tempcities.push({ id: id, name: city });
                 id++;

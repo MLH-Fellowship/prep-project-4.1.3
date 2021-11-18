@@ -11,37 +11,37 @@ import "./background.css";
 const Background = ({ children, result }) => {
   
   const weather = result.weather[0].main;
-  // const weather = "Fog";
+  // const weather = "Snow";
   console.log(result);
 
   if (weather === "Clear") {
     return <ClearSkyBackground children={children} />;
+  }else if (weather === "Sunny") {
+    return <SunnyBackground children={children} />;
   } else if (weather === "Clouds") {
     return <CloudsBackground children={children} />;
-  } else if (weather === "Sunny") {
-    return <SunnyBackground children={children} />;
+  } else if (weather === "Rain" || weather === "Drizzle") {
+    return <RainyBackground children={children} />;
   } else if (weather === "Snow") {
     return <SnowBackground children={children} />;
   } else if (weather === "Thunderstorm") {
     return <ThunderstromBackground children={children} />;
-  } else if (weather === "Rain" || weather === "Drizzle") {
-    return <RainyBackground children={children} />;
   } else if (
-    weather === "Mist" ||
-    weather === "Smoke" ||
-    weather === "Haze" ||
-    weather === "Fog"
-  ) {
-    return <FogBackground children={children} />;
-  } else if (
-    weather === "Dust" ||
-    weather === "Sand" ||
     weather === "Ash" ||
     weather === "Squall" ||
+    weather === "Dust" ||
+    weather === "Sand" ||
     weather === "Tornado"
   ) {
     return <DustBackground children={children} />;
-  } else {
+  } else if (
+    weather === "Smoke" ||
+    weather === "Haze" ||
+    weather === "Mist" ||
+    weather === "Fog"
+  ) {
+    return <FogBackground children={children} />;
+  }  else {
     return <div className="background">{children}</div>;
   }
 };

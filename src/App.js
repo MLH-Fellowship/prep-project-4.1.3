@@ -1,9 +1,10 @@
 import logo from './assets/img/mlh-prep.png';
 import useWeather from './helpers/customHooks/useWeather';
 import RequiredThings from './components/RequiredThings';
+import WeatherCard from './components/WeatherCard';
 
 const App = () => {
-	const { city, results, isLoaded, setCity, setIsLoaded, error } = useWeather();
+	const { city, results, isLoaded, setCity, setIsLoaded, error, cityRes } = useWeather();
 
 	if (error) return <div>Error: {error.message}</div>;
 
@@ -21,16 +22,8 @@ const App = () => {
 				{console.log(results)}
 				{isLoaded && results && (
 					<>
-						<div className='Results'>
-							<h3>{results.weather[0].main}</h3>
-							<p>Feels like {results.main.feels_like}°C</p>
-							<i>
-								<p>
-									{results.name}, {results.sys.country}
-								</p>
-							</i>
-						</div>
-						<RequiredThings results={results} />
+					<WeatherCard results={results} city={cityRes}/>
+					<RequiredThings results={cityRes} />
 					</>
 				)}
 			</div>

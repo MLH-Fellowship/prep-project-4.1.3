@@ -7,6 +7,10 @@ const useWeather = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+  const [cityRes,setCityRes] = useState(null);
+
+  const [latit, setLatit] = useState(0);
+  const [longi, setLongi] = useState(0);
 
   useEffect(() => {
     const options = {
@@ -19,12 +23,16 @@ const useWeather = () => {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
 
+      setLatit(latitude);
+      setLongi(longitude);
+
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
+            setCityRes(result);
             setCity(result.name);
           },
           (error) => {
@@ -54,23 +62,20 @@ const useWeather = () => {
   }, []);
 
   useEffect(() => {
-    if (city !== "") {
+    console.log(latit);
+    console.log(longi);
+    if (latit !== 0 && longi !==0) {
+      const y=new Date();
+      const tempp=y.getTime();
       fetch(
-        "https://api.openweathermap.org/data/2.5/weather?q=" +
-          city +
-          "&units=metric" +
-          "&appid=" +
-          process.env.REACT_APP_APIKEY
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=metric&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
-            if (result["cod"] !== 200) {
-              setIsLoaded(false);
-            } else {
-              setIsLoaded(true);
-              setResults(result);
-            }
+            setIsLoaded(true);
+            setResults(result);
+            console.log(results);
           },
           (error) => {
             setIsLoaded(true);
@@ -78,7 +83,7 @@ const useWeather = () => {
           }
         );
     }
-  }, [city]);
+  }, [latit,longi]);
 
   return {
     city,
@@ -87,6 +92,7 @@ const useWeather = () => {
     setCity,
     setIsLoaded,
     error,
+    cityRes
   };
 };
 

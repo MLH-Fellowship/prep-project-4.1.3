@@ -90,7 +90,7 @@ const useWeather = () => {
     }
   }, [debouncedSearchTerm]);
 
-  function fetchWeatherUsingCoordinates({ lat, lng }) {
+  const fetchWeatherUsingCoordinates = ({ lat, lng }) => {
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_APIKEY}`
     )
@@ -104,7 +104,7 @@ const useWeather = () => {
           setError(error);
         }
       );
-  }
+  };
 
   return {
     city,

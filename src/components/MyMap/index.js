@@ -9,11 +9,15 @@ import {
 
 const zoom = 13;
 
-function LocationMarker({ center, name, temp, fetchWeatherUsingCoordinates }) {
+const LocationMarker = ({
+  center,
+  name,
+  temp,
+  fetchWeatherUsingCoordinates,
+}) => {
   const [position, setPosition] = useState(center);
 
   const map = useMapEvent("click", (e) => {
-    // console.log({ e, map });
     setPosition(e.latlng);
 
     fetchWeatherUsingCoordinates(e.latlng);
@@ -29,7 +33,7 @@ function LocationMarker({ center, name, temp, fetchWeatherUsingCoordinates }) {
       </Popup>
     </Marker>
   );
-}
+};
 
 const MyMap = ({ lon, lat, name, temp, fetchWeatherUsingCoordinates }) => {
   const [map, setMap] = useState();

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loader = () => {
 	return (
-		<svg>
+		<svg id="loader-svg">
 			<circle
 				cx='50'
 				cy='50'

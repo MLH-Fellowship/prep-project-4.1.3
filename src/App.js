@@ -9,7 +9,7 @@ const App = () => {
 
 	if (error) return <div>Error: {error.message}</div>;
 
-	if (!isLoaded) return <Loader />;
+	if (!isLoaded) return <div className="loader-div"><Loader /></div>;
 
 	return (
 		<>

@@ -13,7 +13,7 @@ const App = () => {
 			<img className='logo' src={logo} alt='MLH Prep Logo'></img>
 			<div>
 				<h2>Enter a city below 👇</h2>
-				<SearchOption city={city} onChange={(event) => setCity(event.target.value)} />
+				<SearchOption city={city} onChange={(event) => setCity(event.target.value)} updateCity={(city) => setCity(city)} />
 				{!isLoaded && <h2>Loading...</h2>}
 				{console.log(results)}
 				{isLoaded && results && (

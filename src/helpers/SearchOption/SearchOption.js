@@ -10,6 +10,7 @@ export default class SearchOption extends React.Component {
         };
 
         this.autocompleteCity = this.autocompleteCity.bind(this);
+        this.updateWeatherDetails = this.updateWeatherDetails.bind(this);
     }
 
     autocompleteCity(city) {
@@ -38,14 +39,19 @@ export default class SearchOption extends React.Component {
         }
     }
 
+    updateWeatherDetails = (item) => {
+        this.props.updateCity(item.name)
+    }
+
     render() {
         return (
         <>
             <div >
-            <header className="box-header">
+            <header className="box-header" style={{maxWidth:'500px', margin: '0 auto'}}>
                 <ReactSearchAutocomplete
                 items={this.state.items}
                 onSearch={(record) => this.autocompleteCity(record)}
+                onSelect={this.updateWeatherDetails}
                 autoFocus
                 useCaching={false}
                 placeholder="Type name of city here!!"

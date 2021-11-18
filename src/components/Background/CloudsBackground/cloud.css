@@ -17,6 +17,7 @@
   min-height: 100vh;
   min-width: 100vw;
   animation: animate 50s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes animate {

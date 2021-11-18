@@ -17,13 +17,19 @@ const LocationMarker = ({
 }) => {
   const [position, setPosition] = useState(center);
 
-  const map = useMapEvent("click", (e) => {
+  useEffect(() => {
+    if (center) {
+      setPosition(center);
+    }
+  }, [center]);
+
+  useMapEvent("click", (e) => {
     setPosition(e.latlng);
 
     fetchWeatherUsingCoordinates(e.latlng);
   });
 
-  return position === null ? null : (
+  return (
     <Marker position={position}>
       <Popup>
         <div className="MyMap-popup-container">

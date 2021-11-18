@@ -18,6 +18,7 @@
   min-width: 100vw;
   animation: animate 50s linear infinite;
   pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes animate {

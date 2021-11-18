@@ -9,8 +9,8 @@ const Loader = () => {
 					cy='50'
 					r='40'
 					stroke='white'
-					stroke-dasharray='78.5 235.5'
-					stroke-width='3'
+					strokeDasharray='78.5 235.5'
+					strokeWidth='3'
 					fill='none'
 				/>
 				<circle
@@ -18,8 +18,8 @@ const Loader = () => {
 					cy='50'
 					r='30'
 					stroke='#F09D51'
-					stroke-dasharray='62.8 188.8'
-					stroke-width='3'
+					strokeDasharray='62.8 188.8'
+					strokeWidth='3'
 					fill='none'
 				/>
 				<circle
@@ -27,8 +27,8 @@ const Loader = () => {
 					cy='50'
 					r='20'
 					stroke='#F06543'
-					stroke-dasharray='47.1 141.3'
-					stroke-width='3'
+					strokeDasharray='47.1 141.3'
+					strokeWidth='3'
 					fill='none'
 				/>
 			</svg>

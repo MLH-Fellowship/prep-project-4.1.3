@@ -10,14 +10,14 @@
 .rain {
   min-height: 100vh;
   background: url(rain.png);
-  animation: rain 0.7s linear infinite;
-  -webkit-animation: rain 0.9s linear infinite;
+  animation: rain 14s linear infinite;
+  -webkit-animation: rain 18s linear infinite;
   position: absolute;
   top:0;
   left: 0;
   bottom: 0;
   width: 100%;
-  z-index: 5;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -26,6 +26,6 @@
     background-position: 0% 0%;
   }
   100% {
-    background-position: 20% 100%;
+    background-position: 280% 2000%;
   }
 }

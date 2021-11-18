@@ -2,8 +2,8 @@ import "./rainy.css";
 
 const RainyBackground = ({ children }) => {
   return (
-    <div class="background" id="rainy">
-      <div class="rain"></div>
+    <div className="background" id="rainy">
+      <div className="rain"></div>
       {children}
     </div>
   );

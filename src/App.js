@@ -2,7 +2,6 @@ import logo from './assets/img/mlh-prep.png';
 import useWeather from './helpers/customHooks/useWeather';
 import RequiredThings from './components/RequiredThings';
 import WeatherCard from './components/WeatherCard';
-import Loader from './components/Loader';
 
 const App = () => {
 	const { city, results, isLoaded, setCity, setIsLoaded, error, cityRes } = useWeather();

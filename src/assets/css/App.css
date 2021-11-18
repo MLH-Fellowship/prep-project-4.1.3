@@ -21,9 +21,9 @@ input {
 
 .Results {
   background-color: white;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin: auto;
   margin-top: 20px;
+  width: 400px;
   border-radius: 8px;
   color: black;
   padding: 10px;
@@ -33,4 +33,14 @@ input {
 .leaflet-container {
   width: 80vw;
   height: 400px;
+  padding: 30px 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+@media screen and (max-width: 480px) {
+  .Results {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+  }
 }

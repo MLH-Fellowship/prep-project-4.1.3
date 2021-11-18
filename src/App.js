@@ -9,8 +9,6 @@ const App = () => {
 
 	if (error) return <div>Error: {error.message}</div>;
 
-	if (!isLoaded) return <div className="loader-div"><Loader /></div>;
-
 	return (
 		<>
 			<img className='logo' src={logo} alt='MLH Prep Logo'></img>
@@ -21,6 +19,7 @@ const App = () => {
 					value={city}
 					onChange={(event) => setCity(event.target.value)}
 				/>
+				{!isLoaded && <h2>Loading...</h2>}
 				{console.log(results)}
 				{isLoaded && results && (
 					<>

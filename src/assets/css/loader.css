@@ -1,10 +1,10 @@
-body {
+.loader {
 	position: relative;
 	margin: 0;
 	height: 100vh;
 	display: grid;
 	place-content: center;
-}
+} 
 circle {
 	transform-origin: center;
 	transform-box: fill-box;

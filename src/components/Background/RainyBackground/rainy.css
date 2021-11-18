@@ -9,23 +9,15 @@
 
 .rain {
   min-height: 100vh;
-  background: url(rain.png);
-  animation: rain 14s linear infinite;
-  -webkit-animation: rain 18s linear infinite;
-  position: absolute;
-  top:0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index: 1;
-  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed !important;
+  background: url(https://i.postimg.cc/MKgprHJg/rain.png);
+  animation: rain 0.3s linear infinite;
 }
 
 @keyframes rain {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 280% 2000%;
-  }
+  0% {background-position: 0px 0px;}
+  100% {background-position: 150px 400px;}
 }

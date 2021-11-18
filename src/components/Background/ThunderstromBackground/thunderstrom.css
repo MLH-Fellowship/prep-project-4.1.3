@@ -8,6 +8,13 @@
   padding-bottom: 0;
 }
 
+#tornado{
+    background: url(./tornado-background.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+  }
+
 .lightining{
   width: 100%;
   height: 100vh;

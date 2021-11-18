@@ -6,12 +6,13 @@ import ThunderstromBackground from "./ThunderstromBackground";
 import FogBackground from "./FogBackground";
 import DustBackground from "./DustBackground";
 import RainyBackground from "./RainyBackground";
+import TornadoBackground from "./TornadoBackground";
 import "./background.css";
 
 const Background = ({ children, result }) => {
   
   const weather = result.weather[0].main;
-  // const weather = "Clear";
+  // const weather = "Clouds";
   // console.log(result);
 
   if (weather === "Clear") {
@@ -26,12 +27,13 @@ const Background = ({ children, result }) => {
     return <SnowBackground children={children} />;
   } else if (weather === "Thunderstorm") {
     return <ThunderstromBackground children={children} />;
+  } else if (weather === "Tornado") {
+    return <TornadoBackground children={children}/>;
   } else if (
     weather === "Ash" ||
     weather === "Squall" ||
     weather === "Dust" ||
-    weather === "Sand" ||
-    weather === "Tornado"
+    weather === "Sand"  
   ) {
     return <DustBackground children={children} />;
   } else if (

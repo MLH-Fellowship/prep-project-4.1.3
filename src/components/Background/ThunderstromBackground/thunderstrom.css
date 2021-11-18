@@ -16,6 +16,7 @@
   animation: lightining 4s linear infinite;
   opacity: 1;
   position: absolute;
+  pointer-events: none;
 }
 @keyframes lightining{
   0%{

@@ -20,6 +20,7 @@
   height: 100%;
   position: absolute;
   width: 200%;
+  pointer-events: none;
 }
 #foglayer_01 .image01, #foglayer_01 .image02,
 #foglayer_02 .image01, #foglayer_02 .image02,

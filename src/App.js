@@ -2,14 +2,11 @@ import logo from './assets/img/mlh-prep.png';
 import SearchOption from './helpers/SearchOption/SearchOption';
 import useWeather from './helpers/customHooks/useWeather';
 import RequiredThings from './components/RequiredThings';
-import Loader from './components/Loader';
 
 const App = () => {
 	const { city, results, isLoaded, setCity, setIsLoaded, error } = useWeather();
 
 	if (error) return <div>Error: {error.message}</div>;
-
-	if (!isLoaded) return <Loader />;
 
 	return (
 		<>

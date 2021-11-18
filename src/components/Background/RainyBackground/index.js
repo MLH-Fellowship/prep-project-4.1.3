@@ -1,4 +1,3 @@
-import ReactRain from "react-rain-animation";
 import "react-rain-animation/lib/style.css";
 import "./rainy.css";
 

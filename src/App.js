@@ -4,11 +4,9 @@ import RequiredThings from './components/RequiredThings';
 import Loader from './components/Loader';
 
 const App = () => {
-	const { city, results, isLoaded, setCity, setIsLoaded, error } = useWeather();
+	const { city, results, isLoading, isLoaded, setCity, setIsLoaded, error } = useWeather();
 
 	if (error) return <div>Error: {error.message}</div>;
-
-	if (!isLoaded) return <Loader />;
 
 	return (
 		<>
@@ -21,6 +19,13 @@ const App = () => {
 					onChange={(event) => setCity(event.target.value)}
 				/>
 				{console.log(results)}
+				{isLoading && (
+					<>
+						<div style = {{marginTop: '100px'}}>
+							<Loader />
+						</div>
+					</>
+				)}
 				{isLoaded && results && (
 					<>
 						<div className='Results'>

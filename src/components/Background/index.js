@@ -12,7 +12,7 @@ const Background = ({ children, result }) => {
   
   const weather = result.weather[0].main;
   // const weather = "Clear";
-  console.log(result);
+  // console.log(result);
 
   if (weather === "Clear") {
     return <ClearSkyBackground children={children} />;

@@ -2,7 +2,6 @@ import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
-import Loader from "./components/Loader";
 
 const App = () => {
   const {
@@ -16,8 +15,6 @@ const App = () => {
 
   if (error) return <div>Error: {error.message}</div>;
 
-  if (!isLoaded) return <Loader />;
-
   return (
     <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
@@ -28,6 +25,8 @@ const App = () => {
           value={city}
           onChange={(event) => setCity(event.target.value)}
         />
+
+        {!isLoaded && <h2>Loading...</h2>}
 
         {isLoaded && results && (
           <>

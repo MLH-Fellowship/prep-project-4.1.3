@@ -1,0 +1,49 @@
+.whole{
+    background-color: black;
+}
+
+#thunderstorm{
+  background-image: url(thunder-background.jpg);
+  background-repeat: no-repeat;
+  background-color: #cccccc;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed !important;
+  padding-bottom: 0;
+}
+
+.lightining{
+  width: 100%;
+  height: 100vh;
+  background-image: url(lightining.png);
+  transform: rotate(180deg);
+  animation: lightining 4s linear infinite;
+  opacity: 1;
+  position: absolute;
+}
+@keyframes lightining{
+  0%{
+      opacity: 0;
+  }
+  20%{
+      opacity: 0;
+  }
+  21%{
+      opacity: 1;
+  }
+  25%{
+      opacity: 0;
+  }
+  30%{
+      opacity: 0;
+  }
+  31%{
+      opacity: 1;
+  }
+  35%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 0;
+  }
+}

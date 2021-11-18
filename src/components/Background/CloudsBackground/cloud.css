@@ -1,0 +1,28 @@
+#cloudysky{
+  background: url(./cloudy-bg.png) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+
+.cloud-moving {
+  background: url(./cloud.png) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+  min-width: 100vw;
+  animation: animate 50s linear infinite;
+}
+
+@keyframes animate {
+  
+  0% {
+    background-position: 0px;
+  }
+  100% {
+    background-position: -5440px;
+  }
+}

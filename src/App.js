@@ -26,6 +26,7 @@ const App = () => {
           setCity(commandData.cityname.value);
         }
       },
+      zIndex: 10000000
     });
   }, []);
 

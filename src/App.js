@@ -14,6 +14,8 @@ const App = () => {
     error,
 	cityRes,
     fetchWeatherUsingCoordinates,
+    cityObj,
+    setCityObj
   } = useWeather();
 
   if (error) return <div>Error: {error.message}</div>;
@@ -27,9 +29,8 @@ const App = () => {
           city={city} 
           onChange={(event) => setCity(event.target.value)} 
           updateCity={(city) => setCity(city)} 
+          updateCityObj={(city) => setCityObj(city)} 
         />
-
-        {console.log(city)}
 
         {!isLoaded && <h2>Loading...</h2>}
 

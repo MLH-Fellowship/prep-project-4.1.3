@@ -13,11 +13,31 @@ const useWeather = () => {
   const [latit, setLatit] = useState(0);
   const [longi, setLongi] = useState(0);
 
+  const [cityObj,setCityObj] = useState();
+
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
   // The goal is to only have the API call fire when user stops typing ...
   // ... so that we aren't hitting our API rapidly.
   const debouncedSearchTerm = useDebounce(city, 500);
+
+  useEffect(() => {
+    if(cityObj && cityObj.name)
+    {
+      const y=cityObj.name.indexOf(',');
+      const temp=y===-1 ? cityObj.name : cityObj.name.substr(0,y);
+      fetch(
+        `http://api.openweathermap.org/geo/1.0/direct?q=${temp}&limit=1&appid=${process.env.REACT_APP_APIKEY}`
+      )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setLatit(result[0].lat);
+          setLongi(result[0].lon);
+        }
+      )
+    }
+  }, [cityObj])
 
   useEffect(() => {
     const options = {
@@ -32,6 +52,7 @@ const useWeather = () => {
 
       setLatit(latitude);
       setLongi(longitude);
+
 
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
@@ -69,8 +90,6 @@ const useWeather = () => {
   }, []);
 
   useEffect(() => {
-    console.log(latit);
-    console.log(longi);
     if (latit !== 0 && longi !==0) {
       const y=new Date();
       const tempp=y.getTime();
@@ -82,7 +101,6 @@ const useWeather = () => {
           (result) => {
             setIsLoaded(true);
             setResults(result);
-            console.log(results);
           },
           (error) => {
             setIsLoaded(true);
@@ -90,7 +108,24 @@ const useWeather = () => {
           }
         );
     }
-  }, [latit,longi,debouncedSearchTerm]);
+  }, [longi,debouncedSearchTerm]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&lon=${longi}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCityRes(result);
+          setCity(result.name);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, [longi])
 
   const fetchWeatherUsingCoordinates = ({ lat, lng }) => {
     fetch(
@@ -117,6 +152,8 @@ const useWeather = () => {
     error,
     cityRes,
     fetchWeatherUsingCoordinates,
+    cityObj,
+    setCityObj
   };
 };
 

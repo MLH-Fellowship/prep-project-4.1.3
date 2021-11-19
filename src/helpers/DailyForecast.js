@@ -5,6 +5,7 @@ import {Droplet, Wind, Thermometer} from 'react-feather';
 
 function DailyForecast({results}) {
 
+
     const [arr,setArr] = useState(results.daily.slice(1,7));
     const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     const dayss = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
@@ -13,10 +14,11 @@ function DailyForecast({results}) {
         <>
         <h2>Daily Forecast</h2>
         <div className="daily-forecast">
-            {arr.map((dayWeather) => {
+            {results.daily.map((dayWeather,index) => {
                 const t=new Date(dayWeather.dt*1000);
                 const avgTemp=dayWeather.temp.min+dayWeather.temp.max/2;
                 return(
+                    index === 0 || index === 7 ? <></> : 
                     <div className="daily-div">
                         <h3>
                             {dayss[t.getDay()]}, {t.getDate()} {month[t.getMonth()]}

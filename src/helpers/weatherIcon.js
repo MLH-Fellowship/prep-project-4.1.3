@@ -15,7 +15,6 @@ import {faCloudSun,
     } from '@fortawesome/free-solid-svg-icons'
 
 function weatherIcon(iconString) {
-    console.log(iconString)
     switch (iconString){
         case '01d': return (
                         <FontAwesomeIcon style={{

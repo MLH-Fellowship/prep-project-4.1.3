@@ -3,6 +3,7 @@ import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
 import Background from "./components/Background";
+import SearchOption from './helpers/SearchOption/SearchOption';
 import Toggle from 'react-toggle'
 import "react-toggle/style.css"
 
@@ -37,10 +38,10 @@ const App = () => {
       </div>
       <Background result={results}>
         <h2>Enter a city below 👇</h2>
-        <input
-          type="text"
-          value={city}
-          onChange={(event) => setCity(event.target.value)}
+        <SearchOption 
+          city={city} 
+          onChange={(event) => setCity(event.target.value)} 
+          updateCity={(city) => setCity(city)} 
         />
 
         {!isLoaded && <h2>Loading...</h2>}

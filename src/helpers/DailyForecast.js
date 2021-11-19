@@ -16,7 +16,6 @@ function DailyForecast({results}) {
             {arr.map((dayWeather) => {
                 const t=new Date(dayWeather.dt*1000);
                 const avgTemp=dayWeather.temp.min+dayWeather.temp.max/2;
-                console.log(dayWeather);
                 return(
                     <div className="daily-div">
                         <h3>

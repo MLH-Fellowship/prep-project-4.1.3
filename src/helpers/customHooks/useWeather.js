@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
+import useDebounce from "./useDebounce";
 
 const useWeather = () => {
   const [error, setError] = useState(null);
@@ -8,6 +9,12 @@ const useWeather = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+
+  // Debounce search term so that it only gives us latest value ...
+  // ... if searchTerm has not been updated within last 500ms.
+  // The goal is to only have the API call fire when user stops typing ...
+  // ... so that we aren't hitting our API rapidly.
+  const debouncedSearchTerm = useDebounce(city, 500);
 
   useEffect(() => {
     const options = {
@@ -61,11 +68,11 @@ const useWeather = () => {
 
   useEffect(() => {
     setIsLoaded(false);
-    if (city !== "") {
+    if (debouncedSearchTerm !== "") {
       setIsLoading(true);
       fetch(
         "https://api.openweathermap.org/data/2.5/weather?q=" +
-          city +
+          debouncedSearchTerm +
           "&units=metric" +
           "&appid=" +
           process.env.REACT_APP_APIKEY
@@ -80,6 +87,9 @@ const useWeather = () => {
               setIsLoading(false);
               setIsLoaded(true);
               setResults(result);
+
+              // Scroll To Top if request is successful
+              window.scrollTo(0, 0);
             }
           },
           (error) => {
@@ -89,7 +99,23 @@ const useWeather = () => {
           }
         );
     }
-  }, [city]);
+  }, [debouncedSearchTerm]);
+
+  const fetchWeatherUsingCoordinates = ({ lat, lng }) => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${process.env.REACT_APP_APIKEY}`
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCity(result.name);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  };
 
   return {
     city,
@@ -99,6 +125,7 @@ const useWeather = () => {
     setCity,
     setIsLoaded,
     error,
+    fetchWeatherUsingCoordinates,
   };
 };
 

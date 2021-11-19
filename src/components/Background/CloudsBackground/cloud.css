@@ -10,9 +10,7 @@
 
 .cloud-moving {
   background: url(./cloud.png);
-  position: absolute;
   background-size: cover;
-  height: 100%;
   overflow: hidden;
   min-height: 100vh;
   min-width: 100vw;

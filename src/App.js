@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react';
 import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
@@ -15,7 +16,23 @@ const App = () => {
     error,
     fetchWeatherUsingCoordinates,
   } = useWeather();
+  
+  const [reactLoading, setReactLoading] = useState(true);
+  
+  function fakeRequest() {
+    return new Promise(resolve => setTimeout(() => resolve(), 1000));
+  }
 
+  useEffect(() => {
+    fakeRequest().then(() => {
+      const el = document.querySelector(".loader-wrapper");
+      if (el) {
+        el.remove();
+        setReactLoading(!reactLoading);
+      }
+    });
+  }, []);
+  
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -32,7 +49,7 @@ const App = () => {
         {console.log(results)}
         {isLoading && (
           <>
-            <div style = {{marginTop: '100px'}}>
+            <div style = {{marginTop: '100px'}} className = "loader-svg">
               <Loader />
             </div>
           </>

@@ -115,7 +115,7 @@ const useWeather = () => {
     setCity,
     setIsLoaded,
     error,
-    cityRes
+    cityRes,
     fetchWeatherUsingCoordinates,
   };
 };

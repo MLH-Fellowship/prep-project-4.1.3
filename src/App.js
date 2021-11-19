@@ -11,6 +11,7 @@ const App = () => {
     isLoaded,
     setCity,
     error,
+	cityRes,
     fetchWeatherUsingCoordinates,
   } = useWeather();
 
@@ -34,14 +35,14 @@ const App = () => {
             <WeatherCard results={results} city={cityRes}/>
 
             <MyMap
-              lon={results?.coord?.lon}
-              lat={results?.coord?.lat}
-              name={results?.name}
+              lon={cityRes?.coord?.lon}
+              lat={cityRes?.coord?.lat}
+              name={cityRes?.name}
               fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
-              temp={results?.main.feels_like}
+              temp={cityRes?.main.feels_like}
             />
 
-            <RequiredThings results={results} />
+            <RequiredThings results={cityRes} />
           </>
         )}
       </div>

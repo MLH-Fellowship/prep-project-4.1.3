@@ -42,15 +42,12 @@ export default class SearchOption extends React.Component {
 
     updateWeatherDetails = (item) => {
         this.props.updateCity(item.name)
-        console.log(item);
     }
 
     render() {
         return (
         <>
-            <div style={{
-                    zIndex:1000
-                }}>
+            <div >
             <header className="box-header" style={{maxWidth:'500px', margin: '0 auto'}}>
                 <ReactSearchAutocomplete
                 items={this.state.items}

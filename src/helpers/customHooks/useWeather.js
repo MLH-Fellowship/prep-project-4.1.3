@@ -27,7 +27,7 @@ const useWeather = () => {
       const y=cityObj.name.indexOf(',');
       const temp=y===-1 ? cityObj.name : cityObj.name.substr(0,y);
       fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${temp}&limit=1&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${temp}&limit=1&appid=${process.env.REACT_APP_APIKEY}`
       )
       .then((res) => res.json())
       .then(

@@ -26,13 +26,6 @@ input {
   width: 400px;
   border-radius: 8px;
   color: black;
-  padding: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
-.leaflet-container {
-  width: 80vw;
-  height: 400px;
   padding: 30px 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }

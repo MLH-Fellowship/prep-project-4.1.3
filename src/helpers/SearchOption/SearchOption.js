@@ -24,7 +24,7 @@ export default class SearchOption extends React.Component {
             .then((res) => res.json())
             .then((result) => {
 
-            const set = result?.items?.map((item) => `${item.address.city}, ${item.address.countryCode}`);
+            const set = result?.items?.map((item) => `${item.address.city}, ${item.address.state}, ${item.address.countryCode}`);
             const cities = [...new Set(set)];
 
             // in case there are no suggestions, the input text can still be selected.

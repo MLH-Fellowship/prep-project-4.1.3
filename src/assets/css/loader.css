@@ -1,7 +1,7 @@
 body {
 	position: relative;
 	margin: 0;
-	height: 100vh;
+	height: 200vh;
 	display: grid;
 	place-content: center;
 }

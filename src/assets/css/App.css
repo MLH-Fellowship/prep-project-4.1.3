@@ -18,3 +18,11 @@ input {
   border: 10px;
   width: 200px;
 }
+
+.leaflet-container {
+  width: 80vw;
+  height: 400px;
+  padding: 30px 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+

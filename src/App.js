@@ -17,10 +17,12 @@ const App = () => {
   } = useWeather();
 
   useEffect(() => {
+    //adding alan ai button on home page
     alanBtn({
       key: process.env.REACT_APP_ALAN_APIKEY,
       onCommand: function (commandData) {
         if (commandData.command === "city") {
+          //setting city to show the weather of the vity asked through voice command
           setCity(commandData.cityname.value);
         }
       },

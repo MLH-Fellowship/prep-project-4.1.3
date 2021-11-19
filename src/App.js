@@ -3,6 +3,8 @@ import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
 import SearchOption from './helpers/SearchOption/SearchOption';
+import alanBtn from "@alan-ai/alan-sdk-web";
+import { useEffect } from "react";
 
 const App = () => {
   const {
@@ -13,6 +15,18 @@ const App = () => {
     error,
     fetchWeatherUsingCoordinates,
   } = useWeather();
+
+  useEffect(() => {
+    alanBtn({
+      key: process.env.REACT_APP_ALAN_APIKEY,
+      onCommand: function (commandData) {
+        if (commandData.command === "search") {
+          setCity(commandData.text);
+        }
+      },
+    });
+  }, []);
+
 
   if (error) return <div>Error: {error.message}</div>;
 

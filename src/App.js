@@ -20,8 +20,8 @@ const App = () => {
     alanBtn({
       key: process.env.REACT_APP_ALAN_APIKEY,
       onCommand: function (commandData) {
-        if (commandData.command === "search") {
-          setCity(commandData.text);
+        if (commandData.command === "city") {
+          setCity(commandData.cityname.value);
         }
       },
     });

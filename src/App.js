@@ -2,6 +2,7 @@ import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
+import SearchOption from './helpers/SearchOption/SearchOption';
 
 const App = () => {
   const {
@@ -20,10 +21,10 @@ const App = () => {
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
         <h2>Enter a city below 👇</h2>
-        <input
-          type="text"
-          value={city}
-          onChange={(event) => setCity(event.target.value)}
+        <SearchOption 
+          city={city} 
+          onChange={(event) => setCity(event.target.value)} 
+          updateCity={(city) => setCity(city)} 
         />
 
         {!isLoaded && <h2>Loading...</h2>}

@@ -6,6 +6,12 @@
   padding-bottom: 0;
 }
 
+#clearsky{
+  background: url(./clear-weather.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
 
 .bird {
   background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells-new.svg);

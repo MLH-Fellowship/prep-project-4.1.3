@@ -12,7 +12,7 @@ import "./background.css";
 const Background = ({ children, result }) => {
   
   const weather = result.weather[0].main;
-  //const weather = "Rain";
+  //const weather = "Sunny";
   // console.log(result);
 
   if (weather === "Clear") {

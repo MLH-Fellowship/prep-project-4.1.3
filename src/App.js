@@ -2,6 +2,7 @@ import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
+import Background from "./components/Background";
 
 const App = () => {
   const {
@@ -17,8 +18,9 @@ const App = () => {
 
   return (
     <>
+    {results && <div>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
+      <Background result={results}>
         <h2>Enter a city below 👇</h2>
         <input
           type="text"
@@ -51,7 +53,8 @@ const App = () => {
             <RequiredThings results={results} />
           </>
         )}
-      </div>
+        </Background>
+      </div>}
     </>
   );
 };

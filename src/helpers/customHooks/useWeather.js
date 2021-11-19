@@ -8,6 +8,7 @@ const useWeather = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+  const [useFahrenheit, changeUnit] = useState(false);
 
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
@@ -25,9 +26,10 @@ const useWeather = () => {
     function onSuccess(position) {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
+      let unit = useFahrenheit? 'imperial': 'metric';
 
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/weather?units=${unit}&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
@@ -62,10 +64,12 @@ const useWeather = () => {
 
   useEffect(() => {
     if (debouncedSearchTerm !== "") {
+      let unit = useFahrenheit? 'imperial': 'metric';
       fetch(
         "https://api.openweathermap.org/data/2.5/weather?q=" +
           debouncedSearchTerm +
-          "&units=metric" +
+          "&units=" +
+          unit +
           "&appid=" +
           process.env.REACT_APP_APIKEY
       )
@@ -76,6 +80,7 @@ const useWeather = () => {
               setIsLoaded(false);
             } else {
               setIsLoaded(true);
+              result.unitText = useFahrenheit? "°F": "°C";
               setResults(result);
 
               // Scroll To Top if request is successful
@@ -88,7 +93,7 @@ const useWeather = () => {
           }
         );
     }
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, useFahrenheit]);
 
   const fetchWeatherUsingCoordinates = ({ lat, lng }) => {
     fetch(
@@ -114,6 +119,7 @@ const useWeather = () => {
     setIsLoaded,
     error,
     fetchWeatherUsingCoordinates,
+    changeUnit,
   };
 };
 

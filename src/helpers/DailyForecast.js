@@ -1,10 +1,13 @@
 import React from 'react'
 import { useState } from "react";
+import weatherIcon from './weatherIcon';
+import {Droplet, Wind, Thermometer} from 'react-feather';
 
 function DailyForecast({results}) {
 
     const [arr,setArr] = useState(results.daily.slice(1,7));
-    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const dayss = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
     
     return (
         <>
@@ -17,16 +20,23 @@ function DailyForecast({results}) {
                 return(
                     <div className="daily-div">
                         <h3>
-                            {t.getDate()} {month[t.getMonth()]}
+                            {dayss[t.getDay()]}, {t.getDate()} {month[t.getMonth()]}
                         </h3>
-                        <div>
-                            <img className="dail-forecast-img" src={"https://openweathermap.org/img/wn/" + dayWeather.weather[0].icon + ".png"} />
+                        
+                        <div className="dailyweather-icondiv">
+                            {weatherIcon(dayWeather.weather[0].icon)}
+                            <span>{avgTemp.toPrecision(4)} °C</span>
+                            {/* <img className="dail-forecast-img" src={"https://openweathermap.org/img/wn/" + dayWeather.weather[0].icon + ".png"} /> */}
                         </div>
-                        <h3 style={{
-                            marginTop:'0'
-                        }}>
-                            {avgTemp.toPrecision(4)} °C
-                        </h3>
+                        <div className="dailyweather-desc">{dayWeather.weather[0].main}</div>
+                        <div className="dailyweather-down">
+                            <span>
+                            <Droplet size={20}/>{dayWeather.humidity} %
+                            </span>
+                            <span>
+                            <Wind size={20}/>{dayWeather.wind_speed}
+                            </span>
+                        </div>
                     </div>
                 )
             })}

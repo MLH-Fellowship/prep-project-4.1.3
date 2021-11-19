@@ -10,7 +10,7 @@
 }
 
 .weatherCard-current{
-    width: 55%;
+    width: 45%;
     height: 100%;
     display: flex;
     margin: 1em;
@@ -43,7 +43,7 @@
 }
 
 .weatherCard-current-img{
-    width: 10em;
+    width: 8em;
 }
 
 .othercurrent-info{
@@ -66,7 +66,7 @@
 }
 
 .hourly-chart{
-    width: 450px;
+    width: 35em;
 }
 
 .daily-forecast{
@@ -82,12 +82,65 @@
 }
 
 .daily-div{
-    margin: 0.5em;
-    height: 200px;
-    width: 180px;
+    margin: 0.3em;
+    height: 190px;
+    width: 190px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
+}
+
+.weathercurrent-left{
+    text-align: center;
+}
+
+.weathercurrent-desc{
+    margin-top: 0.5em;
+}
+
+.weathercurrent-left > svg {
+    font-size: 5em;
+    margin: 0.2em;
+}
+
+.weathercurrent-temp{
+    margin-bottom: 0;
+}
+
+.daily-div svg {
+    font-size: 3.5em;
+}
+
+.dailyweather-icondiv{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dailyweather-icondiv > span {
+    font-size: 1.4em;
+    font-weight: 400;
+}
+
+.dailyweather-down{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.dailyweather-down > span > svg {
+    margin-right: 0.1em;
+}
+
+.dailyweather-down > span{
+    display: flex;
+    align-items: center;
+}
+
+.dailyweather-desc{
+    margin-top: 0.5em;
 }

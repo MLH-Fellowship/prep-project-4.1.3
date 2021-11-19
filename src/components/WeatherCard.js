@@ -2,6 +2,7 @@ import React from 'react';
 import {Droplet, Wind, Thermometer} from 'react-feather';
 import HourlyForecast from '../helpers/HourlyForecast';
 import DailyForecast from '../helpers/DailyForecast';
+import weatherIcon from '../helpers/weatherIcon';
 
 const WeatherCard = ({results,city}) => {
 
@@ -11,12 +12,11 @@ const WeatherCard = ({results,city}) => {
               <div className="weatherCard-current ">
                 <h2>Weather in {city.name}, {city.sys.country}</h2>
                 <div className="weather-currentInner">
-                  <div>
-                  <img className="weatherCard-current-img" src={"https://openweathermap.org/img/wn/" + city.weather[0].icon + ".png"} />
-                  </div>
-                  <div>
-                    <h1>{city.main.feels_like}°C</h1>
-                    <p>{city.weather[0].main}</p>
+                  <div className="weathercurrent-left">
+                  {weatherIcon(city.weather[0].icon)}
+                  {/* <img className="weatherCard-current-img" src={"https://openweathermap.org/img/wn/" + city.weather[0].icon + ".png"} /> */}
+                  <h1 className="weathercurrent-temp">{city.main.feels_like} °C</h1>
+                  <h3 className="weathercurrent-desc">{city.weather[0].main}</h3>
                   </div>
                   <div className="othercurrent-info">
                     <div className="otherinfo-child">

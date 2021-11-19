@@ -16,6 +16,17 @@ const useWeather = () => {
   const debouncedSearchTerm = useDebounce(city, 500);
 
   useEffect(() => {
+    //Toast added for informing users about the voice assistant
+    toast.configure()
+    toast.info('Say hi to our voice assistant!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
     const options = {
       enableHighAccuracy: false,
       timeout: 5000,

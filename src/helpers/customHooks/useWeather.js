@@ -5,6 +5,7 @@ import useDebounce from "./useDebounce";
 
 const useWeather = () => {
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
@@ -26,6 +27,8 @@ const useWeather = () => {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
 
+      setIsLoading(true);
+      setIsLoaded(false);
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
       )
@@ -33,9 +36,12 @@ const useWeather = () => {
         .then(
           (result) => {
             setCity(result.name);
+            setIsLoading(false);
+            setIsLoaded(true);
           },
           (error) => {
-            setIsLoaded(true);
+            setIsLoading(false);
+            setIsLoaded(false);
             setError(error);
           }
         );
@@ -61,7 +67,9 @@ const useWeather = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoaded(false);
     if (debouncedSearchTerm !== "") {
+      setIsLoading(true);
       fetch(
         "https://api.openweathermap.org/data/2.5/weather?q=" +
           debouncedSearchTerm +
@@ -73,8 +81,10 @@ const useWeather = () => {
         .then(
           (result) => {
             if (result["cod"] !== 200) {
+              setIsLoading(false);
               setIsLoaded(false);
             } else {
+              setIsLoading(false);
               setIsLoaded(true);
               setResults(result);
 
@@ -83,7 +93,8 @@ const useWeather = () => {
             }
           },
           (error) => {
-            setIsLoaded(true);
+            setIsLoading(false);
+            setIsLoaded(false);
             setError(error);
           }
         );
@@ -109,6 +120,7 @@ const useWeather = () => {
   return {
     city,
     results,
+    isLoading,
     isLoaded,
     setCity,
     setIsLoaded,

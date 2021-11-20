@@ -5,6 +5,7 @@ import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
 import Loader from './components/Loader';
 import SearchOption from './helpers/SearchOption/SearchOption';
+import alanBtn from "@alan-ai/alan-sdk-web";
 
 const App = () => {
   const {
@@ -22,6 +23,20 @@ const App = () => {
   function fakeRequest() {
     return new Promise(resolve => setTimeout(() => resolve(), 1000));
   }
+
+  useEffect(() => {
+    //adding alan ai button on home page
+    alanBtn({
+      key: process.env.REACT_APP_ALAN_APIKEY,
+      onCommand: function (commandData) {
+        if (commandData.command === "city") {
+          //setting city to show the weather of the vity asked through voice command
+          setCity(commandData.cityname.value);
+        }
+      },
+      zIndex: 10000000
+    });
+  }, []);
 
   useEffect(() => {
     fakeRequest().then(() => {

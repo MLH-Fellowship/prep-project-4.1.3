@@ -58,7 +58,28 @@ const App = () => {
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
 
-        {console.log(results)}
+      <div className="locator">
+              <div className="searchbox">
+                <div>
+                  <h2>Enter a city below 👇</h2>
+                </div>
+                <SearchOption
+                  city={city}
+                  onChange={(event) => setCity(event.target.value)} 
+                  updateCity={(city) => setCity(city)} 
+                  updateCityObj={(city) => setCityObj(city)}
+                />
+              </div>
+              <div className="mymap">
+                {cityRes && (<MyMap
+                      lon={cityRes?.coord?.lon}
+                      lat={cityRes?.coord?.lat}
+                      name={cityRes?.name}
+                      fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
+                      temp={cityRes?.main.feels_like}
+                />)}
+              </div>
+            </div>
         {isLoading && (
           <>
             <div style = {{marginTop: '100px'}} className = "loader-svg">
@@ -66,8 +87,8 @@ const App = () => {
             </div>
           </>
         )}
-        {console.log("error " + error)}
-        {console.log("results" + results)}
+        {/* {console.log("error " + error)}
+        {console.log("results" + results)} */}
 
         {isLoaded && error && (
           <div>Error: {error.message}</div>
@@ -77,30 +98,10 @@ const App = () => {
           <>
             <WeatherCard results={results} city={cityRes}/>
 
-            <div className="locator">
-              <div className="searchbox">
-                <div>
-                  <h2>Enter a city below 👇</h2>
-                </div>
-                <SearchOption
-                  city={city}
-                  onChange={(event) => setCity(event.target.value)} 
-                  updateCity={(city) => setCity(city)} 
-                />
-              </div>
-              <div className="mymap">
-                <MyMap
-                      lon={results?.coord?.lon}
-                      lat={results?.coord?.lat}
-                      name={results?.name}
-                      fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
-                      temp={results?.main.feels_like}
-                />
-              </div>
-            </div>
+            
 
             <div>
-              <RequiredThings results={results} />
+              <RequiredThings results={cityRes} />
             </div>
           </>
         )}

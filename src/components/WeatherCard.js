@@ -6,11 +6,20 @@ import weatherIcon from '../helpers/weatherIcon';
 
 const WeatherCard = ({results,city}) => {
 
+  console.log(city);
+
+  let temp=new Date(city.dt);
+  let temp1=temp.getMinutes();
+
+  console.log(temp1);
+
     return (
       <>
             <div className="weather-card">
               <div className="weatherCard-current ">
-                <h2>Weather in {city.name}, {city.sys.country}</h2>
+                <h2>Weather in {city.name}, {city.sys.country} 
+                <span className="weathercurrent-time">{temp.getHours()}:{temp.getMinutes()}</span>
+                </h2>
                 <div className="weather-currentInner">
                   <div className="weathercurrent-left">
                   {weatherIcon(city.weather[0].icon)}

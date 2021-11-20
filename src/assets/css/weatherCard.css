@@ -144,3 +144,7 @@
 .dailyweather-desc{
     margin-top: 0.5em;
 }
+
+.weathercurrent-time{
+    float: right;
+}

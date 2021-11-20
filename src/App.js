@@ -59,12 +59,14 @@ const App = () => {
             </div>
           </>
         )}
+        {console.log("error " + error)}
+        {console.log("results" + results)}
 
         {isLoaded && error && (
           <div>Error: {error.message}</div>
         )}
 
-        {isLoaded && results && !error && (
+        {isLoaded && results && error==null && (
           <>
             <WeatherCard results={results} city={cityRes}/>
 
@@ -79,6 +81,21 @@ const App = () => {
             <RequiredThings results={cityRes} />
           </>
         )}
+
+        {/* {isLoaded && results ? <>
+            <WeatherCard results={results} city={cityRes}/>
+
+            <MyMap
+              lon={cityRes?.coord?.lon}
+              lat={cityRes?.coord?.lat}
+              name={cityRes?.name}
+              fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
+              temp={cityRes?.main.feels_like}
+            />
+
+            <RequiredThings results={cityRes} />
+          </>: <><div>Error: {error.message}</div></>} */}
+
       </div>
     </>
   );

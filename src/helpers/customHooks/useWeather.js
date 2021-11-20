@@ -33,7 +33,6 @@ const useWeather = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          // console.log(result.size);
           if(result.length===0)
           {
             setError({
@@ -44,6 +43,7 @@ const useWeather = () => {
           {
             setLatit(result[0].lat);
             setLongi(result[0].lon);
+            setError(null);
           }
         }
       )
@@ -121,7 +121,7 @@ const useWeather = () => {
             setIsLoaded(true);
             setResults(result);
             setIsLoading(false);
-            setError(null);
+            // setError(null);
           },
           (error) => {
             setIsLoading(false);

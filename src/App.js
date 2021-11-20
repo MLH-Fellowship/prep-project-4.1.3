@@ -6,6 +6,7 @@ import RequiredThings from "./components/RequiredThings";
 import WeatherCard from './components/WeatherCard';
 import Loader from './components/Loader';
 import SearchOption from './helpers/SearchOption/SearchOption';
+import alanBtn from "@alan-ai/alan-sdk-web";
 
 const App = () => {
   const {
@@ -28,6 +29,20 @@ const App = () => {
   }
 
   useEffect(() => {
+    //adding alan ai button on home page
+    alanBtn({
+      key: process.env.REACT_APP_ALAN_APIKEY,
+      onCommand: function (commandData) {
+        if (commandData.command === "city") {
+          //setting city to show the weather of the vity asked through voice command
+          setCity(commandData.cityname.value);
+        }
+      },
+      zIndex: 10000000
+    });
+  }, []);
+
+  useEffect(() => {
     fakeRequest().then(() => {
       const el = document.querySelector(".loader-wrapper");
       if (el) {
@@ -42,13 +57,6 @@ const App = () => {
     <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
-        <h2>Enter a city below 👇</h2>
-        <SearchOption 
-          city={city} 
-          onChange={(event) => setCity(event.target.value)} 
-          updateCity={(city) => setCity(city)} 
-          updateCityObj={(city) => setCityObj(city)} 
-        />
 
         {console.log(results)}
         {isLoading && (
@@ -69,15 +77,31 @@ const App = () => {
           <>
             <WeatherCard results={results} city={cityRes}/>
 
-            <MyMap
-              lon={cityRes?.coord?.lon}
-              lat={cityRes?.coord?.lat}
-              name={cityRes?.name}
-              fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
-              temp={cityRes?.main.feels_like}
-            />
+            <div className="locator">
+              <div className="searchbox">
+                <div>
+                  <h2>Enter a city below 👇</h2>
+                </div>
+                <SearchOption
+                  city={city}
+                  onChange={(event) => setCity(event.target.value)} 
+                  updateCity={(city) => setCity(city)} 
+                />
+              </div>
+              <div className="mymap">
+                <MyMap
+                      lon={results?.coord?.lon}
+                      lat={results?.coord?.lat}
+                      name={results?.name}
+                      fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
+                      temp={results?.main.feels_like}
+                />
+              </div>
+            </div>
 
-            <RequiredThings results={cityRes} />
+            <div>
+              <RequiredThings results={results} />
+            </div>
           </>
         )}
 

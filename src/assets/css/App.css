@@ -12,6 +12,30 @@ body {
   margin-top: 20px;
 }
 
+.locator {
+  display: flex;
+  height: 460px;
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+}
+
+.searchbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  border-radius: 5px;
+}
+
+.mymap {
+  height: 100%;
+  width: 65%;
+}
+
 input {
   padding: 10px;
   border-radius: 4px;
@@ -42,5 +66,20 @@ input {
     width: 80%;
     margin: auto;
     margin-top: 20px;
+  }
+  .locator {
+    flex-direction: column;
+    height: 600px;
+    width: 90%;
+    margin: auto;
+    padding: 10px;
+  }
+  .searchbox {
+    width: 90%;
+    margin: auto;
+  }
+  
+  .mymap {
+    width: 100%;
   }
 }

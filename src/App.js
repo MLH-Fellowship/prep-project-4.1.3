@@ -54,12 +54,7 @@ const App = () => {
     <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
-        <h2>Enter a city below 👇</h2>
-        <SearchOption 
-          city={city} 
-          onChange={(event) => setCity(event.target.value)} 
-          updateCity={(city) => setCity(city)} 
-        />
+        
 
         {console.log(results)}
         {isLoading && (
@@ -82,15 +77,31 @@ const App = () => {
               </i>
             </div>
 
-            <MyMap
-              lon={results?.coord?.lon}
-              lat={results?.coord?.lat}
-              name={results?.name}
-              fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
-              temp={results?.main.feels_like}
-            />
+            <div className="locator">
+              <div className="searchbox">
+                <div>
+                  <h2>Enter a city below 👇</h2>
+                </div>
+                <SearchOption
+                  city={city}
+                  onChange={(event) => setCity(event.target.value)} 
+                  updateCity={(city) => setCity(city)} 
+                />
+              </div>
+              <div className="mymap">
+                <MyMap
+                      lon={results?.coord?.lon}
+                      lat={results?.coord?.lat}
+                      name={results?.name}
+                      fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
+                      temp={results?.main.feels_like}
+                />
+              </div>
+            </div>
 
-            <RequiredThings results={results} />
+            <div>
+              <RequiredThings results={results} />
+            </div>
           </>
         )}
       </div>

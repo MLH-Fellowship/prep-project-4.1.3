@@ -14,7 +14,6 @@ const WeatherCard = ({results,city}) => {
                 <div className="weather-currentInner">
                   <div className="weathercurrent-left">
                   {weatherIcon(city.weather[0].icon)}
-                  {/* <img className="weatherCard-current-img" src={"https://openweathermap.org/img/wn/" + city.weather[0].icon + ".png"} /> */}
                   <h1 className="weathercurrent-temp">{city.main.feels_like} °C</h1>
                   <h3 className="weathercurrent-desc">{city.weather[0].main}</h3>
                   </div>

@@ -27,7 +27,6 @@ function DailyForecast({results}) {
                         <div className="dailyweather-icondiv">
                             {weatherIcon(dayWeather.weather[0].icon)}
                             <span>{avgTemp.toPrecision(4)} °C</span>
-                            {/* <img className="dail-forecast-img" src={"https://openweathermap.org/img/wn/" + dayWeather.weather[0].icon + ".png"} /> */}
                         </div>
                         <div className="dailyweather-desc">{dayWeather.weather[0].main}</div>
                         <div className="dailyweather-down">

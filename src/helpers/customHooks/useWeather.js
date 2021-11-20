@@ -5,6 +5,7 @@ import useDebounce from "./useDebounce";
 
 const useWeather = () => {
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
@@ -54,6 +55,8 @@ const useWeather = () => {
       setLongi(longitude);
 
 
+      setIsLoading(true);
+      setIsLoaded(false);
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
       )
@@ -62,9 +65,12 @@ const useWeather = () => {
           (result) => {
             setCityRes(result);
             setCity(result.name);
+            setIsLoading(false);
+            setIsLoaded(true);
           },
           (error) => {
-            setIsLoaded(true);
+            setIsLoading(false);
+            setIsLoaded(false);
             setError(error);
           }
         );
@@ -93,6 +99,9 @@ const useWeather = () => {
     if (latit !== 0 && longi !==0) {
       const y=new Date();
       const tempp=y.getTime();
+    setIsLoaded(false);
+    if (debouncedSearchTerm !== "") {
+      setIsLoading(true);
       fetch(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=metric&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
       )
@@ -101,13 +110,16 @@ const useWeather = () => {
           (result) => {
             setIsLoaded(true);
             setResults(result);
+            setIsLoading(false);
           },
           (error) => {
-            setIsLoaded(true);
+            setIsLoading(false);
+            setIsLoaded(false);
             setError(error);
           }
         );
     }
+  }
   }, [longi,debouncedSearchTerm]);
 
   useEffect(() => {
@@ -146,6 +158,7 @@ const useWeather = () => {
   return {
     city,
     results,
+    isLoading,
     isLoaded,
     setCity,
     setIsLoaded,

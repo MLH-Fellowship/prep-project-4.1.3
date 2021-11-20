@@ -121,6 +121,7 @@ const useWeather = () => {
             setIsLoaded(true);
             setResults(result);
             setIsLoading(false);
+            setError(null);
           },
           (error) => {
             setIsLoading(false);

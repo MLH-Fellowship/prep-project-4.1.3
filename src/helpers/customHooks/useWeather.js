@@ -5,6 +5,7 @@ import useDebounce from "./useDebounce";
 
 const useWeather = () => {
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
@@ -28,6 +29,9 @@ const useWeather = () => {
       let longitude = position.coords.longitude;
       let unit = useFahrenheit? 'imperial': 'metric';
 
+      setIsLoading(true);
+      setIsLoaded(false);
+
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?units=${unit}&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
       )
@@ -35,9 +39,12 @@ const useWeather = () => {
         .then(
           (result) => {
             setCity(result.name);
+            setIsLoading(false);
+            setIsLoaded(true);
           },
           (error) => {
-            setIsLoaded(true);
+            setIsLoading(false);
+            setIsLoaded(false);
             setError(error);
           }
         );
@@ -63,7 +70,9 @@ const useWeather = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoaded(false);
     if (debouncedSearchTerm !== "") {
+      setIsLoading(true);
       let unit = useFahrenheit? 'imperial': 'metric';
       fetch(
         "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -77,8 +86,10 @@ const useWeather = () => {
         .then(
           (result) => {
             if (result["cod"] !== 200) {
+              setIsLoading(false);
               setIsLoaded(false);
             } else {
+              setIsLoading(false);
               setIsLoaded(true);
               result.unitText = useFahrenheit? "°F": "°C";
               setResults(result);
@@ -88,7 +99,8 @@ const useWeather = () => {
             }
           },
           (error) => {
-            setIsLoaded(true);
+            setIsLoading(false);
+            setIsLoaded(false);
             setError(error);
           }
         );
@@ -114,6 +126,7 @@ const useWeather = () => {
   return {
     city,
     results,
+    isLoading,
     isLoaded,
     setCity,
     setIsLoaded,

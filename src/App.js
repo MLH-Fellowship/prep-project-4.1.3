@@ -1,8 +1,10 @@
+import React, {useState, useEffect} from 'react';
 import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
 import Background from "./components/Background";
+import Loader from './components/Loader';
 import SearchOption from './helpers/SearchOption/SearchOption';
 import Toggle from 'react-toggle'
 import "react-toggle/style.css"
@@ -11,12 +13,29 @@ const App = () => {
   const {
     city,
     results,
+    isLoading,
     isLoaded,
     setCity,
     error,
     fetchWeatherUsingCoordinates,
     changeUnit,
   } = useWeather();
+    
+  const [reactLoading, setReactLoading] = useState(true);
+  
+  function fakeRequest() {
+    return new Promise(resolve => setTimeout(() => resolve(), 1000));
+  }
+
+  useEffect(() => {
+    fakeRequest().then(() => {
+      const el = document.querySelector(".loader-wrapper");
+      if (el) {
+        el.remove();
+        setReactLoading(!reactLoading);
+      }
+    });
+  }, []);
 
   if (error) return <div>Error: {error.message}</div>;
 
@@ -44,7 +63,13 @@ const App = () => {
           updateCity={(city) => setCity(city)} 
         />
 
-        {!isLoaded && <h2>Loading...</h2>}
+        {isLoading && (
+          <>
+            <div style = {{marginTop: '100px'}} className = "loader-svg">
+              <Loader />
+            </div>
+          </>
+        )}
 
         {isLoaded && results && (
           <>

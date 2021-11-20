@@ -3,6 +3,7 @@ import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
+import WeatherCard from './components/WeatherCard';
 import Loader from './components/Loader';
 import SearchOption from './helpers/SearchOption/SearchOption';
 import alanBtn from "@alan-ai/alan-sdk-web";
@@ -15,7 +16,10 @@ const App = () => {
     isLoaded,
     setCity,
     error,
+	cityRes,
     fetchWeatherUsingCoordinates,
+    cityObj,
+    setCityObj
   } = useWeather();
   
   const [reactLoading, setReactLoading] = useState(true);
@@ -48,36 +52,13 @@ const App = () => {
     });
   }, []);
   
-  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
-        
 
-        {console.log(results)}
-        {isLoading && (
-          <>
-            <div style = {{marginTop: '100px'}} className = "loader-svg">
-              <Loader />
-            </div>
-          </>
-        )}
-
-        {isLoaded && results && (
-          <>
-            <div className="Results">
-              <h3>{results.weather[0].main}</h3>
-              <p>Feels like {results.main.feels_like}°C</p>
-              <i>
-                <p>
-                  {results.name}, {results.sys.country}
-                </p>
-              </i>
-            </div>
-
-            <div className="locator">
+      <div className="locator">
               <div className="searchbox">
                 <div>
                   <h2>Enter a city below 👇</h2>
@@ -86,24 +67,45 @@ const App = () => {
                   city={city}
                   onChange={(event) => setCity(event.target.value)} 
                   updateCity={(city) => setCity(city)} 
+                  updateCityObj={(city) => setCityObj(city)}
                 />
               </div>
               <div className="mymap">
-                <MyMap
-                      lon={results?.coord?.lon}
-                      lat={results?.coord?.lat}
-                      name={results?.name}
+                {cityRes && (<MyMap
+                      lon={cityRes?.coord?.lon}
+                      lat={cityRes?.coord?.lat}
+                      name={cityRes?.name}
                       fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
-                      temp={results?.main.feels_like}
-                />
+                      temp={cityRes?.main.feels_like}
+                />)}
               </div>
             </div>
-
-            <div>
-              <RequiredThings results={results} />
+        {isLoading && (
+          <>
+            <div style = {{marginTop: '100px'}} className = "loader-svg">
+              <Loader />
             </div>
           </>
         )}
+        {/* {console.log("error " + error)}
+        {console.log("results" + results)} */}
+
+        {isLoaded && error && (
+          <div>Error: {error.message}</div>
+        )}
+
+        {isLoaded && results && error==null && (
+          <>
+            <WeatherCard results={results} city={cityRes}/>
+
+            
+
+            <div>
+              <RequiredThings results={cityRes} />
+            </div>
+          </>
+        )}
+
       </div>
     </>
   );

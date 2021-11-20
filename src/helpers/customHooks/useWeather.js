@@ -9,12 +9,46 @@ const useWeather = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+  const [cityRes,setCityRes] = useState(null);
+
+  const [latit, setLatit] = useState(0);
+  const [longi, setLongi] = useState(0);
+
+  const [cityObj,setCityObj] = useState();
 
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
   // The goal is to only have the API call fire when user stops typing ...
   // ... so that we aren't hitting our API rapidly.
   const debouncedSearchTerm = useDebounce(city, 500);
+
+  useEffect(() => {
+    if(cityObj && cityObj.name)
+    {
+      const y=cityObj.name.indexOf(',');
+      const temp=y===-1 ? cityObj.name : cityObj.name.substr(0,y);
+      fetch(
+        `https://api.openweathermap.org/geo/1.0/direct?q=${temp}&limit=1&appid=${process.env.REACT_APP_APIKEY}`
+      )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          if(result.length===0)
+          {
+            setError({
+              "message":"No location found"
+            });
+          }
+          else
+          {
+            setLatit(result[0].lat);
+            setLongi(result[0].lon);
+            setError(null);
+          }
+        }
+      )
+    }
+  }, [cityObj])
 
   useEffect(() => {
     //Toast added for informing users about the voice assistant
@@ -38,14 +72,19 @@ const useWeather = () => {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
 
+      setLatit(latitude);
+      setLongi(longitude);
+
+
       setIsLoading(true);
       setIsLoaded(false);
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
+            setCityRes(result);
             setCity(result.name);
             setIsLoading(false);
             setIsLoaded(true);
@@ -78,30 +117,21 @@ const useWeather = () => {
   }, []);
 
   useEffect(() => {
+    if (latit !== 0 && longi !==0) {
+      const y=new Date();
+      const tempp=y.getTime();
     setIsLoaded(false);
     if (debouncedSearchTerm !== "") {
       setIsLoading(true);
       fetch(
-        "https://api.openweathermap.org/data/2.5/weather?q=" +
-          debouncedSearchTerm +
-          "&units=metric" +
-          "&appid=" +
-          process.env.REACT_APP_APIKEY
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=metric&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
-            if (result["cod"] !== 200) {
-              setIsLoading(false);
-              setIsLoaded(false);
-            } else {
-              setIsLoading(false);
-              setIsLoaded(true);
-              setResults(result);
-
-              // Scroll To Top if request is successful
-              window.scrollTo(0, 0);
-            }
+            setIsLoaded(true);
+            setResults(result);
+            setIsLoading(false);
           },
           (error) => {
             setIsLoading(false);
@@ -110,7 +140,25 @@ const useWeather = () => {
           }
         );
     }
-  }, [debouncedSearchTerm]);
+  }
+  }, [longi,debouncedSearchTerm]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&lon=${longi}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+    )
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          setCityRes(result);
+          setCity(result.name);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, [longi])
 
   const fetchWeatherUsingCoordinates = ({ lat, lng }) => {
     fetch(
@@ -136,7 +184,10 @@ const useWeather = () => {
     setCity,
     setIsLoaded,
     error,
+    cityRes,
     fetchWeatherUsingCoordinates,
+    cityObj,
+    setCityObj
   };
 };
 

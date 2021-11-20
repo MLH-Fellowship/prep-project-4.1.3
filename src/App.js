@@ -6,7 +6,6 @@ import RequiredThings from "./components/RequiredThings";
 import Loader from './components/Loader';
 import SearchOption from './helpers/SearchOption/SearchOption';
 import alanBtn from "@alan-ai/alan-sdk-web";
-import { useEffect } from "react";
 
 const App = () => {
   const {

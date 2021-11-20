@@ -32,6 +32,8 @@ const useWeather = () => {
       setIsLoading(true);
       setIsLoaded(false);
 
+      setIsLoading(true);
+      setIsLoaded(false);
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?units=${unit}&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
       )

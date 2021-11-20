@@ -20,7 +20,7 @@ const App = () => {
     fetchWeatherUsingCoordinates,
     changeUnit,
   } = useWeather();
-    
+  
   const [reactLoading, setReactLoading] = useState(true);
   
   function fakeRequest() {
@@ -37,6 +37,16 @@ const App = () => {
     });
   }, []);
 
+  useEffect(() => {
+    fakeRequest().then(() => {
+      const el = document.querySelector(".loader-wrapper");
+      if (el) {
+        el.remove();
+        setReactLoading(!reactLoading);
+      }
+    });
+  }, []);
+  
   if (error) return <div>Error: {error.message}</div>;
 
   return (
@@ -62,7 +72,6 @@ const App = () => {
           onChange={(event) => setCity(event.target.value)} 
           updateCity={(city) => setCity(city)} 
         />
-
         {isLoading && (
           <>
             <div style = {{marginTop: '100px'}} className = "loader-svg">

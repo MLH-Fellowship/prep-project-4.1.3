@@ -33,8 +33,18 @@ const useWeather = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          setLatit(result[0].lat);
-          setLongi(result[0].lon);
+          // console.log(result.size);
+          if(result.length===0)
+          {
+            setError({
+              "message":"No location found"
+            });
+          }
+          else
+          {
+            setLatit(result[0].lat);
+            setLongi(result[0].lon);
+          }
         }
       )
     }

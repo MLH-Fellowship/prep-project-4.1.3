@@ -37,7 +37,7 @@ const App = () => {
     });
   }, []);
   
-  if (error) return <div>Error: {error.message}</div>;
+  // if (error) return <div>Error: {error.message}</div>;
 
   return (
     <>
@@ -60,7 +60,11 @@ const App = () => {
           </>
         )}
 
-        {isLoaded && results && (
+        {isLoaded && error && (
+          <div>Error: {error.message}</div>
+        )}
+
+        {isLoaded && results && !error && (
           <>
             <WeatherCard results={results} city={cityRes}/>
 

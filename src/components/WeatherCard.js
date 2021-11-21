@@ -3,22 +3,44 @@ import {Droplet, Wind, Thermometer} from 'react-feather';
 import HourlyForecast from '../helpers/HourlyForecast';
 import DailyForecast from '../helpers/DailyForecast';
 import weatherIcon from '../helpers/weatherIcon';
+import moment from 'moment'
+import 'moment-timezone'
 
 const WeatherCard = ({results,city}) => {
 
   console.log(city);
 
+  var datee=new Date(city.dt*1000);
+
+  datee=moment.utc(datee).utcOffset(city.timezone/60).format("HH:mm");
+
+  console.log(datee);
+
+  function tConvert (time) {
+    // Check correct time format and split into components
+    time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)?$/) || [time];
+  
+    if (time.length > 1) { // If time format correct
+      time = time.slice (1);  // Remove full string match value
+      time[5] = +time[0] < 12 ? ' AM' : ' PM'; // Set AM/PM
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join (''); // return adjusted time or original string
+  }
+
+  let displayTime = tConvert(datee);
+
   let temp=new Date(city.dt);
   let temp1=temp.getMinutes();
 
-  console.log(temp1);
+  // console.log(temp1);
 
     return (
       <>
             <div className="weather-card">
               <div className="weatherCard-current ">
                 <h2>Weather in {city.name}, {city.sys.country} 
-                <span className="weathercurrent-time">{temp.getHours()}:{temp.getMinutes()}</span>
+                <span className="weathercurrent-time">{displayTime}</span>
                 </h2>
                 <div className="weather-currentInner">
                   <div className="weathercurrent-left">

@@ -13,7 +13,6 @@ const WeatherCard = ({results,city}) => {
   var datee=new Date(city.dt*1000);
 
   datee=moment.utc(datee).utcOffset(city.timezone/60).format("HH:mm");
-  // datee=moment.utc(datee).tz("Asia/Kolkata").format("HH:MM A");
 
   console.log(datee);
 
@@ -28,8 +27,6 @@ const WeatherCard = ({results,city}) => {
     }
     return time.join (''); // return adjusted time or original string
   }
-  
-  // console.log(tConvert (datee));
 
   let displayTime = tConvert(datee);
 

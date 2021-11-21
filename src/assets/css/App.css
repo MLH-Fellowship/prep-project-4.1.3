@@ -15,7 +15,7 @@ body {
 .locator {
   display: flex;
   height: 460px;
-  width: 60%;
+  width: 70%;
   margin: auto;
   padding: 20px;
 }
@@ -50,25 +50,39 @@ input {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-@media screen and (max-width: 480px) {
-  .Results {
-    width: 80%;
-    margin: auto;
-    margin-top: 20px;
+@media screen and (max-width: 1500px) {
+  .locator {
+    width: 75%;
   }
+}
+
+@media screen and (max-width: 1200px) {
+  .locator {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 900px) {
   .locator {
     flex-direction: column;
     height: 600px;
-    width: 90%;
+    width: 100%;
     margin: auto;
-    padding: 10px;
   }
   .searchbox {
-    width: 90%;
+    width: 80%;
     margin: auto;
   }
   
   .mymap {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .Results {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
   }
 }

@@ -42,6 +42,7 @@ export default class SearchOption extends React.Component {
 
     updateWeatherDetails = (item) => {
         this.props.updateCity(item.name)
+        this.props.updateCityObj(item)
     }
 
     render() {

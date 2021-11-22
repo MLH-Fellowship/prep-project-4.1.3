@@ -8,7 +8,7 @@ function DailyForecast({results}) {
 
     const [arr,setArr] = useState(results.daily.slice(1,7));
     const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const dayss = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    const dayss = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     
     return (
         <>
@@ -22,6 +22,7 @@ function DailyForecast({results}) {
                     <div className="daily-div">
                         <h3>
                             {dayss[t.getDay()]}, {t.getDate()} {month[t.getMonth()]}
+                            {console.log(t.getDay())}
                         </h3>
                         
                         <div className="dailyweather-icondiv">

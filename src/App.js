@@ -3,18 +3,13 @@ import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
-<<<<<<< HEAD
 import Background from "./components/Background";
 import Loader from './components/Loader';
 import SearchOption from './helpers/SearchOption/SearchOption';
 import Toggle from 'react-toggle'
 import "react-toggle/style.css"
-=======
 import WeatherCard from './components/WeatherCard';
-import Loader from './components/Loader';
-import SearchOption from './helpers/SearchOption/SearchOption';
 import alanBtn from "@alan-ai/alan-sdk-web";
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
 
 const App = () => {
   const {
@@ -26,12 +21,9 @@ const App = () => {
     error,
 	cityRes,
     fetchWeatherUsingCoordinates,
-<<<<<<< HEAD
     changeUnit,
-=======
     cityObj,
     setCityObj
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
   } = useWeather();
   
   const [reactLoading, setReactLoading] = useState(true);
@@ -77,9 +69,9 @@ const App = () => {
 
   return (
     <>
-<<<<<<< HEAD
-    {results && <div>
-      <div className="navbar">
+
+{results && <div>
+    <div className="navbar">
         <img className="logo" src={logo} alt="MLH Prep Logo"></img>
         <label className="toggle-div">
         <span>°C</span>
@@ -93,15 +85,6 @@ const App = () => {
         </label>
       </div>
       <Background result={results}>
-        <h2>Enter a city below 👇</h2>
-        <SearchOption 
-          city={city} 
-          onChange={(event) => setCity(event.target.value)} 
-          updateCity={(city) => setCity(city)} 
-        />
-=======
-      <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
 
       <div className="locator">
               <div className="searchbox">
@@ -125,7 +108,6 @@ const App = () => {
                 />)}
               </div>
             </div>
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
         {isLoading && (
           <>
             <div style = {{marginTop: '100px'}} className = "loader-svg">
@@ -142,19 +124,7 @@ const App = () => {
 
         {isLoaded && results && error==null && (
           <>
-<<<<<<< HEAD
-            <div className="Results">
-              <h3>{results.weather[0].main}</h3>
-              <p>Feels like {results.main.feels_like}{results.unitText}</p>
-              <i>
-                <p>
-                  {results.name}, {results.sys.country}
-                </p>
-              </i>
-            </div>
-=======
             <WeatherCard results={results} city={cityRes}/>
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
 
             
 
@@ -163,13 +133,8 @@ const App = () => {
             </div>
           </>
         )}
-<<<<<<< HEAD
         </Background>
       </div>}
-=======
-
-      </div>
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
     </>
   );
 };

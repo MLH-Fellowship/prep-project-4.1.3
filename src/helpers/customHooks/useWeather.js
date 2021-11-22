@@ -9,16 +9,13 @@ const useWeather = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
-<<<<<<< HEAD
   const [useFahrenheit, changeUnit] = useState(false);
-=======
   const [cityRes,setCityRes] = useState(null);
 
   const [latit, setLatit] = useState(0);
   const [longi, setLongi] = useState(0);
 
   const [cityObj,setCityObj] = useState();
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
 
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
@@ -87,11 +84,7 @@ const useWeather = () => {
       setIsLoading(true);
       setIsLoaded(false);
       fetch(
-<<<<<<< HEAD
-        `https://api.openweathermap.org/data/2.5/weather?units=${unit}&lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_APIKEY}`
-=======
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
@@ -126,7 +119,7 @@ const useWeather = () => {
       onError,
       options
     );
-  }, []);
+  }, [useFahrenheit]);
 
   useEffect(() => {
     if (latit !== 0 && longi !==0) {
@@ -137,38 +130,16 @@ const useWeather = () => {
       setIsLoading(true);
       let unit = useFahrenheit? 'imperial': 'metric';
       fetch(
-<<<<<<< HEAD
-        "https://api.openweathermap.org/data/2.5/weather?q=" +
-          debouncedSearchTerm +
-          "&units=" +
-          unit +
-          "&appid=" +
-          process.env.REACT_APP_APIKEY
-=======
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=metric&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=${unit}&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
-<<<<<<< HEAD
-            if (result["cod"] !== 200) {
-              setIsLoading(false);
-              setIsLoaded(false);
-            } else {
-              setIsLoading(false);
-              setIsLoaded(true);
-              result.unitText = useFahrenheit? "°F": "°C";
-              setResults(result);
-
-              // Scroll To Top if request is successful
-              window.scrollTo(0, 0);
-            }
-=======
             setIsLoaded(true);
             setResults(result);
             setIsLoading(false);
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
+            result.unitText = useFahrenheit? "°F": "°C";
+            
           },
           (error) => {
             setIsLoading(false);
@@ -177,15 +148,13 @@ const useWeather = () => {
           }
         );
     }
-<<<<<<< HEAD
-  }, [debouncedSearchTerm, useFahrenheit]);
-=======
   }
-  }, [longi,debouncedSearchTerm]);
+  }, [longi,debouncedSearchTerm,useFahrenheit]);
 
   useEffect(() => {
+    let unit = useFahrenheit? 'imperial': 'metric';
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&lon=${longi}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&lon=${longi}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`
     )
       .then((res) => res.json())
       .then(
@@ -198,8 +167,7 @@ const useWeather = () => {
           setError(error);
         }
       );
-  }, [longi])
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
+  }, [longi, useFahrenheit])
 
   const fetchWeatherUsingCoordinates = ({ lat, lng }) => {
     fetch(
@@ -227,12 +195,9 @@ const useWeather = () => {
     error,
     cityRes,
     fetchWeatherUsingCoordinates,
-<<<<<<< HEAD
     changeUnit,
-=======
     cityObj,
     setCityObj
->>>>>>> 8c7e18a900397b403281fdff514a315fe173894d
   };
 };
 

@@ -84,7 +84,7 @@ const App = () => {
           <span>°F</span>
         </label>
       </div>
-      {console.log(results)}
+
       <Background result={results}>
 
       <div className="locator">
@@ -125,7 +125,7 @@ const App = () => {
 
         {isLoaded && results && error==null && (
           <>
-            <WeatherCard results={results} city={cityRes}/>
+            <WeatherCard results={results} city={cityRes} changeUnit={changeUnit}/>
 
             
 

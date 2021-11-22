@@ -9,6 +9,7 @@ import 'moment-timezone'
 const WeatherCard = ({results,city}) => {
 
   console.log(city);
+  // console.log(results);
 
   var datee=new Date(city.dt*1000);
 
@@ -45,7 +46,7 @@ const WeatherCard = ({results,city}) => {
                 <div className="weather-currentInner">
                   <div className="weathercurrent-left">
                   {weatherIcon(city.weather[0].icon)}
-                  <h1 className="weathercurrent-temp">{city.main.feels_like} °C</h1>
+                  <h1 className="weathercurrent-temp">{city.main.feels_like} {results.unitText}</h1>
                   <h3 className="weathercurrent-desc">{city.weather[0].main}</h3>
                   </div>
                   <div className="othercurrent-info">
@@ -62,7 +63,7 @@ const WeatherCard = ({results,city}) => {
                       <div>
                         <strong>Temp</strong>
                         <br/>
-                        <span className="otherinfo-childspan">{city.main.temp_max}/{city.main.temp_min} °C</span>
+                        <span className="otherinfo-childspan">{city.main.temp_max}/{city.main.temp_min} {results.unitText} </span>
                       </div>
                     </div>
                     <div className="otherinfo-child">

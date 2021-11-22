@@ -128,15 +128,15 @@ const useWeather = () => {
     setIsLoaded(false);
     if (debouncedSearchTerm !== "") {
       setIsLoading(true);
-      //let unit = useFahrenheit? 'imperial': 'metric';
+      let unit = useFahrenheit? 'imperial': 'metric';
       fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=metric&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=${unit}&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
             setIsLoaded(true);
-            //result.unitText = useFahrenheit? "°F": "°C";
+            result.unitText = useFahrenheit? "°F": "°C";
             setResults(result);
             setIsLoading(false);
             
@@ -147,7 +147,7 @@ const useWeather = () => {
         );
     }
   }
-  }, [longi,debouncedSearchTerm]);
+  }, [longi,useFahrenheit, debouncedSearchTerm]);
 
   useEffect(() => {
     let unit = useFahrenheit? 'imperial': 'metric';
@@ -165,7 +165,7 @@ const useWeather = () => {
           setError(error);
         }
       );
-  }, [longi, useFahrenheit])
+  }, [longi])
 
   const fetchWeatherUsingCoordinates = ({ lat, lng }) => {
     fetch(

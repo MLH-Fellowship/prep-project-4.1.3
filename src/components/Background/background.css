@@ -3,3 +3,7 @@
   min-width: 100vw;
   background-attachment: fixed !important;
 }
+
+.locator {
+  margin-top: 70px;
+}

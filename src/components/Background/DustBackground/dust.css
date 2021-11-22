@@ -1,0 +1,9 @@
+#dust-background {
+    background-image: url("./desert-background.jpg");
+    background-repeat: no-repeat;
+    background-color: #cccccc;
+    background-size: cover;
+    overflow: hidden;
+    background-attachment: fixed !important;
+    padding-bottom: 0;
+  }

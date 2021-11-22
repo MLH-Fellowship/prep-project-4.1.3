@@ -27,7 +27,7 @@ function DailyForecast({results}) {
                         
                         <div className="dailyweather-icondiv">
                             {weatherIcon(dayWeather.weather[0].icon)}
-                            <span>{avgTemp.toPrecision(4)} °C</span>
+                            <span>{avgTemp.toPrecision(4)} {results.unitText}</span>
                         </div>
                         <div className="dailyweather-desc">{dayWeather.weather[0].main}</div>
                         <div className="dailyweather-down">

@@ -9,12 +9,13 @@ const useWeather = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("");
   const [results, setResults] = useState(null);
+  const [useFahrenheit, changeUnit] = useState(false);
   const [cityRes,setCityRes] = useState(null);
 
   const [latit, setLatit] = useState(0);
   const [longi, setLongi] = useState(0);
 
-  const [cityObj,setCityObj] = useState();
+  const [cityObj,setCityObj] = useState([]);
 
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
@@ -71,6 +72,10 @@ const useWeather = () => {
     function onSuccess(position) {
       let latitude = position.coords.latitude;
       let longitude = position.coords.longitude;
+      let unit = useFahrenheit? 'imperial': 'metric';
+
+      setIsLoading(true);
+      setIsLoaded(false);
 
       setLatit(latitude);
       setLongi(longitude);
@@ -79,7 +84,7 @@ const useWeather = () => {
       setIsLoading(true);
       setIsLoaded(false);
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
@@ -114,7 +119,7 @@ const useWeather = () => {
       onError,
       options
     );
-  }, []);
+  }, [useFahrenheit]);
 
   useEffect(() => {
     if (latit !== 0 && longi !==0) {
@@ -123,29 +128,31 @@ const useWeather = () => {
     setIsLoaded(false);
     if (debouncedSearchTerm !== "") {
       setIsLoading(true);
+      let unit = useFahrenheit? 'imperial': 'metric';
       fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=metric&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=${unit}&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
             setIsLoaded(true);
+            result.unitText = useFahrenheit? "°F": "°C";
             setResults(result);
             setIsLoading(false);
+            
           },
           (error) => {
             setIsLoading(false);
-            setIsLoaded(false);
-            setError(error);
           }
         );
     }
   }
-  }, [longi,debouncedSearchTerm]);
+  }, [longi,useFahrenheit, debouncedSearchTerm]);
 
   useEffect(() => {
+    let unit = useFahrenheit? 'imperial': 'metric';
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&lon=${longi}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&lon=${longi}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`
     )
       .then((res) => res.json())
       .then(
@@ -186,6 +193,7 @@ const useWeather = () => {
     error,
     cityRes,
     fetchWeatherUsingCoordinates,
+    changeUnit,
     cityObj,
     setCityObj
   };

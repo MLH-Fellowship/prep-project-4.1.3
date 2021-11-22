@@ -1,0 +1,23 @@
+#rainy {
+  min-height: 100vh;
+  background: url(./rain-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed !important;
+}
+
+.rain {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-attachment: fixed !important;
+  background: url(https://i.postimg.cc/MKgprHJg/rain.png);
+  animation: rain 0.3s linear infinite;
+}
+
+@keyframes rain {
+  0% {background-position: 0px 0px;}
+  100% {background-position: 150px 400px;}
+}

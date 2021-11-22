@@ -3,9 +3,12 @@ import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
 import RequiredThings from "./components/RequiredThings";
-import WeatherCard from './components/WeatherCard';
+import Background from "./components/Background";
 import Loader from './components/Loader';
 import SearchOption from './helpers/SearchOption/SearchOption';
+import Toggle from 'react-toggle'
+import "react-toggle/style.css"
+import WeatherCard from './components/WeatherCard';
 import alanBtn from "@alan-ai/alan-sdk-web";
 
 const App = () => {
@@ -18,6 +21,7 @@ const App = () => {
     error,
 	cityRes,
     fetchWeatherUsingCoordinates,
+    changeUnit,
     cityObj,
     setCityObj
   } = useWeather();
@@ -51,12 +55,37 @@ const App = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    fakeRequest().then(() => {
+      const el = document.querySelector(".loader-wrapper");
+      if (el) {
+        el.remove();
+        setReactLoading(!reactLoading);
+      }
+    });
+  }, []);
   
 
   return (
     <>
-      <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
+
+{results && <div>
+    <div className="navbar">
+        <img className="logo" src={logo} alt="MLH Prep Logo"></img>
+        <label className="toggle-div">
+        <span>°C</span>
+          <Toggle
+            defaultChecked={false}
+            className="toggle"
+            icons={false}
+            onChange = {(event) => changeUnit(event.target.checked)}
+          />
+          <span>°F</span>
+        </label>
+      </div>
+
+      <Background result={results}>
 
       <div className="locator">
               <div className="searchbox">
@@ -96,7 +125,7 @@ const App = () => {
 
         {isLoaded && results && error==null && (
           <>
-            <WeatherCard results={results} city={cityRes}/>
+            <WeatherCard results={results} city={cityRes} changeUnit={changeUnit}/>
 
             
 
@@ -105,8 +134,8 @@ const App = () => {
             </div>
           </>
         )}
-
-      </div>
+        </Background>
+      </div>}
     </>
   );
 };

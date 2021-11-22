@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/logo.svg" sizes="any" type="image/svg+xml"/>
+  <link rel="icon" href="%PUBLIC_URL%/logo.svg" sizes="any" type="image/svg+xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
@@ -26,6 +26,11 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin="" />
+
+  <!-- Fontawesome cdn-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Weather Hub</title>
 </head>
 
@@ -42,39 +47,15 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <div class="loader-wrapper">
-      <div class="loader">
-        <svg>
-          <circle
-            cx='50'
-            cy='50'
-            r='40'
-            stroke='white'
-            stroke-dasharray='78.5 235.5'
-            stroke-width='3'
-            fill='none'
-          />
-          <circle
-            cx='50'
-            cy='50'
-            r='30'
-            stroke='#F09D51'
-            stroke-dasharray='62.8 188.8'
-            stroke-width='3'
-            fill='none'
-          />
-          <circle
-            cx='50'
-            cy='50'
-            r='20'
-            stroke='#F06543'
-            stroke-dasharray='47.1 141.3'
-            stroke-width='3'
-            fill='none'
-          />
-        </svg>
-      </div>
+  <div class="loader-wrapper">
+    <div class="loader">
+      <svg>
+        <circle cx='50' cy='50' r='40' stroke='white' stroke-dasharray='78.5 235.5' stroke-width='3' fill='none' />
+        <circle cx='50' cy='50' r='30' stroke='#F09D51' stroke-dasharray='62.8 188.8' stroke-width='3' fill='none' />
+        <circle cx='50' cy='50' r='20' stroke='#F06543' stroke-dasharray='47.1 141.3' stroke-width='3' fill='none' />
+      </svg>
     </div>
+  </div>
 </body>
 
 </html>

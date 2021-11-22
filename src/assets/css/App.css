@@ -12,6 +12,30 @@ body {
   margin-top: 20px;
 }
 
+.locator {
+  display: flex;
+  height: 460px;
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+}
+
+.searchbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+  border-radius: 5px;
+}
+
+.mymap {
+  height: 100%;
+  width: 65%;
+}
+
 input {
   padding: 10px;
   border-radius: 4px;
@@ -19,22 +43,40 @@ input {
   width: 200px;
 }
 
-.Results {
-  background-color: white;
-  margin: auto;
-  margin-top: 20px;
-  width: 400px;
-  border-radius: 8px;
-  color: black;
-  padding: 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
-
 .leaflet-container {
   width: 80vw;
   height: 400px;
   padding: 30px 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+@media screen and (max-width: 1500px) {
+  .locator {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .locator {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .locator {
+    flex-direction: column;
+    height: 600px;
+    width: 100%;
+    margin: auto;
+  }
+  .searchbox {
+    width: 80%;
+    margin: auto;
+  }
+  
+  .mymap {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 480px) {

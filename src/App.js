@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import MyMap from "./components/MyMap";
 import logo from "./assets/img/mlh-prep.png";
 import useWeather from "./helpers/customHooks/useWeather";
@@ -19,15 +19,15 @@ const App = () => {
     isLoaded,
     setCity,
     error,
-	cityRes,
+    cityRes,
     fetchWeatherUsingCoordinates,
     changeUnit,
     cityObj,
     setCityObj
   } = useWeather();
-  
+
   const [reactLoading, setReactLoading] = useState(true);
-  
+
   function fakeRequest() {
     return new Promise(resolve => setTimeout(() => resolve(), 1000));
   }
@@ -65,75 +65,82 @@ const App = () => {
       }
     });
   }, []);
-  
+
 
   return (
     <>
 
-{results && <div>
-    <div className="navbar">
-        <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-        <label className="toggle-div">
-        <span>°C</span>
-          <Toggle
-            defaultChecked={false}
-            className="toggle"
-            icons={false}
-            onChange = {(event) => changeUnit(event.target.checked)}
-          />
-          <span>°F</span>
-        </label>
-      </div>
+      {results && <div>
+        <div className="navbar">
+          <img className="logo" src={logo} alt="MLH Prep Logo"></img>
+          <label className="toggle-div">
+            <span>°C</span>
+            <Toggle
+              defaultChecked={false}
+              className="toggle"
+              icons={false}
+              onChange={(event) => changeUnit(event.target.checked)}
+            />
+            <span>°F</span>
+          </label>
+        </div>
 
-      <Background result={results}>
+        <Background result={results}>
 
-      <div className="locator">
-              <div className="searchbox">
-                <div>
-                  <h2>Enter a city below 👇</h2>
-                </div>
-                <SearchOption
-                  city={city}
-                  onChange={(event) => setCity(event.target.value)} 
-                  updateCity={(city) => setCity(city)} 
-                  updateCityObj={(city) => setCityObj(city)}
-                />
+          <div className="locator">
+            <div className="searchbox">
+              <div className="bookmark">
+                <abbr title="Add bookmark">
+                  <i
+                    className="fa-regular fa-bookmark fa-lg"
+                  ></i>
+                </abbr>
               </div>
-              <div className="mymap">
-                {cityRes && (<MyMap
-                      lon={cityRes?.coord?.lon}
-                      lat={cityRes?.coord?.lat}
-                      name={cityRes?.name}
-                      fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
-                      temp={cityRes?.main.feels_like}
-                />)}
+              <div>
+                <h2>Enter a city below 👇</h2>
               </div>
+              <SearchOption
+                city={city}
+                onChange={(event) => setCity(event.target.value)}
+                updateCity={(city) => setCity(city)}
+                updateCityObj={(city) => setCityObj(city)}
+              />
             </div>
-        {isLoading && (
-          <>
-            <div style = {{marginTop: '100px'}} className = "loader-svg">
-              <Loader />
+            <div className="mymap">
+              {cityRes && (<MyMap
+                lon={cityRes?.coord?.lon}
+                lat={cityRes?.coord?.lat}
+                name={cityRes?.name}
+                fetchWeatherUsingCoordinates={fetchWeatherUsingCoordinates}
+                temp={cityRes?.main.feels_like}
+              />)}
             </div>
-          </>
-        )}
-        {/* {console.log("error " + error)}
+          </div>
+          {isLoading && (
+            <>
+              <div style={{ marginTop: '100px' }} className="loader-svg">
+                <Loader />
+              </div>
+            </>
+          )}
+          {/* {console.log("error " + error)}
         {console.log("results" + results)} */}
 
-        {isLoaded && error && (
-          <div>Error: {error.message}</div>
-        )}
+          {isLoaded && error && (
+            <div>Error: {error.message}</div>
+          )}
 
-        {isLoaded && results && error==null && (
-          <>
-            <WeatherCard results={results} city={cityRes} changeUnit={changeUnit}/>
+          {isLoaded && results && error == null && (
+            <>
+              <WeatherCard results={results} city={cityRes} changeUnit={changeUnit} />
 
-            
 
-            <div>
-              <RequiredThings results={cityRes} />
-            </div>
-          </>
-        )}
+
+              <div>
+                <RequiredThings results={cityRes} />
+              </div>
+            </>
+          )}
         </Background>
       </div>}
     </>

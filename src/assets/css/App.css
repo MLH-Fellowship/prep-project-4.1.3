@@ -51,6 +51,7 @@ body {
 
 .searchbox {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   width: 30%;
@@ -60,6 +61,12 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: black;
   border-radius: 8px 0 0 8px;
+}
+
+.bookmark {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .mymap {

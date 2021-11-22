@@ -1,16 +1,11 @@
 {
-  "short_name": "Weather App",
-  "name": "Weather App for MLH Prep",
+  "short_name": "Weather Hub",
+  "name": "Weather Hub for MLH Prep",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
+      "src": "logo256.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "256x256"
     },
     {
       "src": "logo512.png",

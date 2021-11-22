@@ -15,7 +15,7 @@ const useWeather = () => {
   const [latit, setLatit] = useState(0);
   const [longi, setLongi] = useState(0);
 
-  const [cityObj,setCityObj] = useState();
+  const [cityObj,setCityObj] = useState([]);
 
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
@@ -128,28 +128,26 @@ const useWeather = () => {
     setIsLoaded(false);
     if (debouncedSearchTerm !== "") {
       setIsLoading(true);
-      let unit = useFahrenheit? 'imperial': 'metric';
+      //let unit = useFahrenheit? 'imperial': 'metric';
       fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=${unit}&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${latit}&lon=${longi}&dt=${tempp}&units=metric&exclude=minutely&appid=${process.env.REACT_APP_APIKEY}`
       )
         .then((res) => res.json())
         .then(
           (result) => {
             setIsLoaded(true);
+            //result.unitText = useFahrenheit? "°F": "°C";
             setResults(result);
             setIsLoading(false);
-            result.unitText = useFahrenheit? "°F": "°C";
             
           },
           (error) => {
             setIsLoading(false);
-            setIsLoaded(false);
-            setError(error);
           }
         );
     }
   }
-  }, [longi,debouncedSearchTerm,useFahrenheit]);
+  }, [longi,debouncedSearchTerm]);
 
   useEffect(() => {
     let unit = useFahrenheit? 'imperial': 'metric';

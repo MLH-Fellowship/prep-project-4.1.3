@@ -84,6 +84,7 @@ const App = () => {
           <span>°F</span>
         </label>
       </div>
+      {console.log(results)}
       <Background result={results}>
 
       <div className="locator">

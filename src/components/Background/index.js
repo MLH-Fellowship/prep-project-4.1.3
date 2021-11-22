@@ -11,9 +11,9 @@ import "./background.css";
 
 const Background = ({ children, result }) => {
   
-  const weather = result.weather[0].main;
+  const weather = result.current.weather[0].main;
   //const weather = "Sunny";
-  // console.log(result);
+  console.log(result);
 
   if (weather === "Clear") {
     return <ClearSkyBackground children={children} />;

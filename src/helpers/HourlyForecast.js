@@ -6,11 +6,13 @@ function HourlyForecast({results}) {
         labels: ['+1 H', '+2 H', '+3 H', '+4 H', '+5 H'],
         datasets: [
           {
-            label: 'Temperature in Celsius',
+            label: `Temperature (${results.unitText})`,
             data: [results.hourly[0].temp,results.hourly[1].temp,results.hourly[2].temp,results.hourly[3].temp,results.hourly[4].temp],
             fill: false,
             backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 0.5)',
+            borderWidth: 4,
+            pointRadius: 4,
           },
         ],
       };

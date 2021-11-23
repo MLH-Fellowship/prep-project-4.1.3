@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Toggle from 'react-toggle';
 import alanBtn from '@alan-ai/alan-sdk-web';
 
@@ -56,6 +57,10 @@ const HomePage = () => {
 				<div>
 					<div className='navbar'>
 						<img className='logo' src={logo} alt='MLH Prep Logo'></img>
+						<Link to='/trip-planner' style={{ color: '#fff' }}>
+							{' '}
+							Trip Planner
+						</Link>
 						<label className='toggle-div'>
 							<span>°C</span>
 							<Toggle

@@ -61,15 +61,6 @@ const HomePage = () => {
 							<Link to='/' className="nav-item">
 								Home
 							</Link>
-							<Link to='/' className="nav-item">
-								Hourly Forecast
-							</Link>
-							<Link to='/' className="nav-item">
-								Daily Forecast
-							</Link>
-							<Link to='/' className="nav-item">
-								Items to Bring
-							</Link>
 							<Link to='/trip-planner' className="nav-item">
 								Trip Planner
 							</Link>

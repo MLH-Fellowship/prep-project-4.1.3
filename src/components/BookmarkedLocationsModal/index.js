@@ -21,7 +21,7 @@ const BookmarkedLocationsModal = ({ isOpen, closeModal, ...rest }) => {
       <h2 style={{ color: "black" }}>My Bookmarks</h2>
       <div className="bookmark-container">
         {bookmarkedLocations.map((place) => {
-          return <BookmarkCard location={place.name} />;
+          return <BookmarkCard place={place.name} />;
         })}
       </div>
     </ReactModal>

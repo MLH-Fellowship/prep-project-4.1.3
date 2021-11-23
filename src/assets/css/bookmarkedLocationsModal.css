@@ -1,7 +1,8 @@
 .ReactModal__Overlay {
   opacity: 0;
-  transition: opacity 200ms ease-in-out;
-  z-index: 10;
+  transition: opacity 300ms ease-in-out;
+  position: absolute;
+  z-index: 1000;
 }
 
 .ReactModal__Overlay--after-open {

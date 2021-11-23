@@ -58,8 +58,19 @@ const HomePage = () => {
 					<Background result={results}>
 						<div className='navbar'>
 							<img className='logo' src={logo} alt='Weather Hub Logo'></img>
-							<Link to='/trip-planner' style={{ color: '#fff' }}>
-								{' '}
+							<Link to='/' className="nav-item">
+								Home
+							</Link>
+							<Link to='/' className="nav-item">
+								Hourly Forecast
+							</Link>
+							<Link to='/' className="nav-item">
+								Daily Forecast
+							</Link>
+							<Link to='/' className="nav-item">
+								Items to Bring
+							</Link>
+							<Link to='/trip-planner' className="nav-item">
 								Trip Planner
 							</Link>
 							<label className='toggle-div'>

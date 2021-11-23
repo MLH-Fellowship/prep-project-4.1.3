@@ -4,7 +4,7 @@ body {
 
 .navbar {
   display: grid;
-  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
   margin-left: auto;
   margin-right: auto;
   width: 85%;
@@ -18,9 +18,22 @@ body {
   border-right: 2px solid rgba(255, 255, 255, 0.125);
 }
 
+.nav-item {
+  backdrop-filter: blur(25px) saturate(66%);
+  -webkit-backdrop-filter: blur(25px) saturate(66%);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.125);
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 9px 20px 9px;
+}
+
 .logo {
-  grid-column-start: 3;
-  grid-column-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 1;
   width: 70%;
   margin-bottom: 5px;
   margin-left: auto;
@@ -30,7 +43,7 @@ body {
 .toggle-div {
   display: flex;
   grid-column-start: 8;
-  grid-column-end: 9;
+  grid-column-end: 8;
   margin: auto auto auto auto;
   justify-content: center;
 }

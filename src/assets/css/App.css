@@ -1,20 +1,27 @@
 body {
-  background-color: #133667;
-  color: white;
   text-align: center;
 }
 
 .navbar {
   display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+  backdrop-filter: blur(15px) saturate(100%);
+  -webkit-backdrop-filter: blur(15px) saturate(100%);
+  background-color: rgba(19, 54, 103, 0.25);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.125);
+  border-left: 2px solid rgba(255, 255, 255, 0.125);
+  border-right: 2px solid rgba(255, 255, 255, 0.125);
 }
 
 .logo {
-  grid-column-start: 5;
-  grid-column-end: 7;
-  width: 100%;
-  margin-top: 5px;
+  grid-column-start: 3;
+  grid-column-end: 3;
+  width: 70%;
   margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;

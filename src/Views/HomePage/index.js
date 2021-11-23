@@ -12,7 +12,7 @@ import RequiredThings from '../../components/RequiredThings';
 import useWeather from '../../helpers/customHooks/useWeather';
 import SearchOption from '../../helpers/SearchOption/SearchOption';
 
-import logo from '../../assets/img/mlh-prep.png';
+import logo from '../../assets/img/logo.svg';
 
 import 'react-toggle/style.css';
 
@@ -55,25 +55,25 @@ const HomePage = () => {
 
 			{results && (
 				<div>
-					<div className='navbar'>
-						<img className='logo' src={logo} alt='MLH Prep Logo'></img>
-						<Link to='/trip-planner' style={{ color: '#fff' }}>
-							{' '}
-							Trip Planner
-						</Link>
-						<label className='toggle-div'>
-							<span>°C</span>
-							<Toggle
-								defaultChecked={false}
-								className='toggle'
-								icons={false}
-								onChange={(event) => changeUnit(event.target.checked)}
-							/>
-							<span>°F</span>
-						</label>
-					</div>
-
 					<Background result={results}>
+						<div className='navbar'>
+							<img className='logo' src={logo} alt='Weather Hub Logo'></img>
+							<Link to='/trip-planner' style={{ color: '#fff' }}>
+								{' '}
+								Trip Planner
+							</Link>
+							<label className='toggle-div'>
+								<span>°C</span>
+								<Toggle
+									defaultChecked={false}
+									className='toggle'
+									icons={false}
+									onChange={(event) => changeUnit(event.target.checked)}
+								/>
+								<span>°F</span>
+							</label>
+						</div>
+
 						<div className='locator'>
 							<div className='searchbox'>
 								<div>

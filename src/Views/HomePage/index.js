@@ -30,12 +30,6 @@ const HomePage = () => {
 		setCityObj,
 	} = useWeather();
 
-	const [reactLoading, setReactLoading] = useState(true);
-
-	function fakeRequest() {
-		return new Promise((resolve) => setTimeout(() => resolve(), 1000));
-	}
-
 	useEffect(() => {
 		//adding alan ai button on home page
 		alanBtn({
@@ -50,18 +44,14 @@ const HomePage = () => {
 		});
 	}, []);
 
-	useEffect(() => {
-		fakeRequest().then(() => {
-			const el = document.querySelector('.loader-wrapper');
-			if (el) {
-				el.remove();
-				setReactLoading(!reactLoading);
-			}
-		});
-	}, []);
-
 	return (
 		<>
+			{!isLoaded && (
+				<div className='loader-wrapper'>
+					<Loader />
+				</div>
+			)}
+
 			{results && (
 				<div>
 					<div className='navbar'>
@@ -103,15 +93,6 @@ const HomePage = () => {
 								)}
 							</div>
 						</div>
-						{isLoading && (
-							<>
-								<div style={{ marginTop: '100px' }} className='loader-svg'>
-									<Loader />
-								</div>
-							</>
-						)}
-						{/* {console.log("error " + error)}
-        {console.log("results" + results)} */}
 
 						{isLoaded && error && <div>Error: {error.message}</div>}
 

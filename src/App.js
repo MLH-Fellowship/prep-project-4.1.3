@@ -120,8 +120,6 @@ const App = () => {
                 </div>
               </>
             )}
-            {/* {console.log("error " + error)}
-        {console.log("results" + results)} */}
 
             {isLoaded && error && <div>Error: {error.message}</div>}
 

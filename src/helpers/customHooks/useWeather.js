@@ -84,11 +84,9 @@ const useWeather = () => {
 					(result) => {
 						setCityRes(result);
 						setCity(result.name);
-						setIsLoaded(true);
 						setIsLoading(false);
 					},
 					(error) => {
-						setIsLoaded(true);
 						setIsLoading(false);
 						setError(error);
 					}

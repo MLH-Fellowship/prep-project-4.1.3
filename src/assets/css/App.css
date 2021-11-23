@@ -69,6 +69,12 @@ body {
   right: 20px;
 }
 
+.bookmark-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .mymap {
   height: 100%;
   width: 65%;

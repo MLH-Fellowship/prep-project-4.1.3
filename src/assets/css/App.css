@@ -112,20 +112,23 @@ input {
 }
 
 @media screen and (max-width: 900px) {
-	.locator {
-		flex-direction: column;
-		height: 600px;
-		width: 100%;
-		margin: auto;
-	}
-	.searchbox {
-		width: 80%;
-		margin: auto;
-	}
-
-	.mymap {
-		width: 100%;
-	}
+  .locator {
+    flex-direction: column;
+    height: 800px;
+    width: 100%;
+    margin: auto;
+  }
+  .searchbox {
+    height:35%;
+    width: 80%;
+    margin: auto;
+    justify-content: start;
+  }
+  
+  .mymap {
+    height: 65%;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 480px) {

@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
-import { Droplet, Wind, Thermometer } from 'react-feather';
+import clear from "../Background/ClearSkyBackground/clear-sky.jpg"
+import cloud from "../Background/CloudsBackground/clouds-background.jpg"
+import dust from "../Background/DustBackground/dustbg.jpg"
+import fog from "../Background/FogBackground/fog-background.jpg"
+import rainy from "../Background/RainyBackground/rain-background.jpg"
+import snow from "../Background/SnowBackground/snow.jpg"
+import sunny from "../Background/SunnyBackground/sunny.jpg"
+import thunder from "../Background/ThunderstromBackground/thunder-background.jpg"
+import tornado from "../Background/ThunderstromBackground/tornado-background.jpg"
 
 const BookmarkCard = ({ place }) => {
     const BASE_URL = "https://api.openweathermap.org/data/2.5/";
@@ -13,10 +21,27 @@ const BookmarkCard = ({ place }) => {
     const [weekly, setWeekly] = useState([]);
     const [minTemp, setminTemp] = useState([]);
     const [maxTemp, setmaxTemp] = useState([]);
+    const [weatherCondition, setWeather] = useState("Clear");
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
+    const selectBackground = () => {
+        console.log("This is the desc inside the function:", weatherCondition)
+        console.log(typeof (weatherCondition))
+        if (weatherCondition === "Clear") return clear;
+        else if (weatherCondition === "Sunny") return sunny;
+        else if (weatherCondition === "Clouds") return cloud;
+        else if (weatherCondition === "Rain" || weatherCondition === "Drizzle") return rainy;
+        else if (weatherCondition === "Snow") return snow;
+        else if (weatherCondition === "Thunderstorm") return thunder;
+        else if (weatherCondition === "Tornado") return tornado;
+        else if (weatherCondition === "Ash" || weatherCondition === "Squall" || weatherCondition === "Dust" || weatherCondition === "Sand") return dust;
+        else if (weatherCondition === "Smoke" || weatherCondition === "Haze" || weatherCondition === "Mist" || weatherCondition === "Fog") return fog;
+        else return clear;
+    }
+
     useEffect(() => {
         async function getDetails() {
             const { data } = await axios.get(
@@ -29,6 +54,8 @@ const BookmarkCard = ({ place }) => {
             );
             oneApiData = oneApiData.data;
             const { current } = oneApiData;
+            setWeather(current.weather[0].main);
+            console.log(weatherCondition)
 
             setWind(current.wind_speed);
             setHumidity(current.humidity);
@@ -68,9 +95,9 @@ const BookmarkCard = ({ place }) => {
     }, []);
 
     return (
-        <div style={{ padding: "25px" }} className="bookmarkCard">
-            <div className="card-fav">
-                <h2>{capitalizeFirstLetter(place)}</h2>
+        <div style={{ padding: "25px" }} className="bookmarkCard" style={{ backgroundImage: `url(${selectBackground()})` }}>
+            <div className="bookmarkCard-fav">
+                <h1>{capitalizeFirstLetter(place)}</h1>
                 <h3 className="head-fav">
                     {capitalizeFirstLetter(description)}
                     <br />
@@ -80,17 +107,19 @@ const BookmarkCard = ({ place }) => {
                         <span className="dot">•</span> Humidity {humidity}%
                     </span>
                 </h3>
-                <h1 className="h1-heading">
-                    {Math.floor(temperature).toPrecision(4) + " °C"}
-                </h1>
-                <div className="image">
-                    <img
-                        src={`http://openweathermap.org/img/w/${icon}.png`}
-                        className="imageicon"
-                        alt="icon"
-                    />
+                <div className="bookmarkCard-temp">
+                    <h1 className="h1-heading">
+                        {Math.floor(temperature).toPrecision(4) + " °C"}
+                    </h1>
+                    <div className="image">
+                        <img
+                            src={`http://openweathermap.org/img/w/${icon}.png`}
+                            className="imageicon"
+                            alt="icon"
+                        />
+                    </div>
                 </div>
-                <table>
+                <table className="bookmarkCard-table">
                     <tr>
                         {weekly.map((day) => {
                             return <td>{day}</td>;

@@ -1,137 +1,137 @@
 body {
-  text-align: center;
+	text-align: center;
 }
 
 .navbar {
-  display: grid;
-  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 85%;
-  backdrop-filter: blur(15px) saturate(100%);
-  -webkit-backdrop-filter: blur(15px) saturate(100%);
-  background-color: rgba(19, 54, 103, 0.25);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.125);
-  border-left: 2px solid rgba(255, 255, 255, 0.125);
-  border-right: 2px solid rgba(255, 255, 255, 0.125);
+	display: grid;
+	grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 85%;
+	backdrop-filter: blur(15px) saturate(100%);
+	-webkit-backdrop-filter: blur(15px) saturate(100%);
+	background-color: rgba(19, 54, 103, 0.25);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.125);
+	border-left: 2px solid rgba(255, 255, 255, 0.125);
+	border-right: 2px solid rgba(255, 255, 255, 0.125);
 }
 
 .nav-item {
-  backdrop-filter: blur(25px) saturate(66%);
-  -webkit-backdrop-filter: blur(25px) saturate(66%);
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.125);
-  color: rgba(255, 255, 255, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 9px 20px 9px;
+	backdrop-filter: blur(25px) saturate(66%);
+	-webkit-backdrop-filter: blur(25px) saturate(66%);
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	border: 2px solid rgba(255, 255, 255, 0.125);
+	color: rgba(255, 255, 255, 0.75);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 9px 20px 9px;
 }
 
 .logo {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  width: 70%;
-  margin-bottom: 5px;
-  margin-left: auto;
-  margin-right: auto;
+	grid-column-start: 1;
+	grid-column-end: 1;
+	width: 70%;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .toggle-div {
-  display: flex;
-  grid-column-start: 8;
-  grid-column-end: 8;
-  margin: auto auto auto auto;
-  justify-content: center;
+	display: flex;
+	grid-column-start: 8;
+	grid-column-end: 8;
+	margin: auto auto auto auto;
+	justify-content: center;
 }
 
 .toggle-div span {
-  margin-left: 5%;
-  margin-right: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 .toggle.react-toggle .react-toggle-track {
-  background-color: #19AB27;
+	background-color: skyblue;
 }
 
 .toggle.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: #128D15;
+	background-color: skyblue;
 }
 
 .locator {
-  display: flex;
-  height: 460px;
-  width: 70%;
-  margin: auto;
-  padding: 20px;
+	display: flex;
+	height: 460px;
+	width: 70%;
+	margin: auto;
+	padding: 20px;
 }
 
 .searchbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 30%;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: black;
-  border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 30%;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: black;
+	border-radius: 5px;
 }
 
 .mymap {
-  height: 100%;
-  width: 65%;
+	height: 100%;
+	width: 65%;
 }
 
 input {
-  padding: 10px;
-  border-radius: 4px;
-  border: 10px;
-  width: 200px;
+	padding: 10px;
+	border-radius: 4px;
+	border: 10px;
+	width: 200px;
 }
 
 .leaflet-container {
-  width: 80vw;
-  height: 400px;
-  padding: 30px 10px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	width: 80vw;
+	height: 400px;
+	padding: 30px 10px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 @media screen and (max-width: 1500px) {
-  .locator {
-    width: 75%;
-  }
+	.locator {
+		width: 75%;
+	}
 }
 
 @media screen and (max-width: 1200px) {
-  .locator {
-    width: 85%;
-  }
+	.locator {
+		width: 85%;
+	}
 }
 
 @media screen and (max-width: 900px) {
-  .locator {
-    flex-direction: column;
-    height: 600px;
-    width: 100%;
-    margin: auto;
-  }
-  .searchbox {
-    width: 80%;
-    margin: auto;
-  }
-  
-  .mymap {
-    width: 100%;
-  }
+	.locator {
+		flex-direction: column;
+		height: 600px;
+		width: 100%;
+		margin: auto;
+	}
+	.searchbox {
+		width: 80%;
+		margin: auto;
+	}
+
+	.mymap {
+		width: 100%;
+	}
 }
 
 @media screen and (max-width: 480px) {
-  .Results {
-    width: 80%;
-    margin: auto;
-    margin-top: 20px;
-  }
+	.Results {
+		width: 80%;
+		margin: auto;
+		margin-top: 20px;
+	}
 }

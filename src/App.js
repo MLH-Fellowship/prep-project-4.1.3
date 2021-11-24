@@ -10,15 +10,8 @@ import Toggle from 'react-toggle'
 import "react-toggle/style.css"
 import WeatherCard from './components/WeatherCard';
 import alanBtn from "@alan-ai/alan-sdk-web";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
-import TripPlanner from './TripPlanner';
 
-const HomePage = () => {
+const App = () => {
   const {
     city,
     results,
@@ -33,6 +26,11 @@ const HomePage = () => {
     setCityObj
   } = useWeather();
   
+  const [reactLoading, setReactLoading] = useState(true);
+  
+  function fakeRequest() {
+    return new Promise(resolve => setTimeout(() => resolve(), 1000));
+  }
 
   useEffect(() => {
     //adding alan ai button on home page
@@ -45,6 +43,26 @@ const HomePage = () => {
         }
       },
       zIndex: 10000000
+    });
+  }, []);
+
+  useEffect(() => {
+    fakeRequest().then(() => {
+      const el = document.querySelector(".loader-wrapper");
+      if (el) {
+        el.remove();
+        setReactLoading(!reactLoading);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    fakeRequest().then(() => {
+      const el = document.querySelector(".loader-wrapper");
+      if (el) {
+        el.remove();
+        setReactLoading(!reactLoading);
+      }
     });
   }, []);
   
@@ -118,43 +136,6 @@ const HomePage = () => {
         )}
         </Background>
       </div>}
-    </>
-  );
-};
-
-const App = () => {
-
-  const [reactLoading, setReactLoading] = useState(true);
-
-  function fakeRequest() {
-    return new Promise(resolve => setTimeout(() => resolve(), 1000));
-  }
-
-  useEffect(() => {
-    fakeRequest().then(() => {
-      const el = document.querySelector(".loader-wrapper");
-      if (el) {
-        el.remove();
-        setReactLoading(!reactLoading);
-      }
-    });
-  }, []);
-
-  return (
-    <>
-    
-    {
-      !reactLoading && (<Router>
-        <Routes>
-          <Route path="/trip-planner" element={<TripPlanner/>}/>
-  
-          <Route path="/" element={<HomePage/>}/>
-  
-          <Route path="*" element={<HomePage />} />
-  
-        </Routes>
-      </Router>)
-    }
     </>
   );
 };

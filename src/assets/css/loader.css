@@ -30,10 +30,10 @@ circle:nth-child(3) {
 	height: 100%;
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: -100px;
 	background-color: #133667;
 	margin-left: 100px;
 	display: grid;
 	place-items: center;
 	z-index: 0;
-  }
+}

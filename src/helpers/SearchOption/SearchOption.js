@@ -19,7 +19,7 @@ export default class SearchOption extends React.Component {
         "https://autocomplete.search.hereapi.com/v1/autocomplete?";
 
         if (city !== "") {
-        var query = `q=${city}&limit=5&types=city&apiKey=${process.env.REACT_APP_HEREAPI}`;
+        var query = `q=${city}&limit=4&types=city&apiKey=${process.env.REACT_APP_HEREAPI}`;
         fetch(`${url}${query}`)
             .then((res) => res.json())
             .then((result) => {

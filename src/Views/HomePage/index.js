@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Toggle from 'react-toggle';
+
 import alanBtn from '@alan-ai/alan-sdk-web';
 
 import MyMap from '../../components/MyMap';
@@ -12,9 +11,8 @@ import RequiredThings from '../../components/RequiredThings';
 import useWeather from '../../helpers/customHooks/useWeather';
 import SearchOption from '../../helpers/SearchOption/SearchOption';
 
-import logo from '../../assets/img/logo.svg';
-
 import 'react-toggle/style.css';
+import Navbar from '../../components/Navbar';
 
 const HomePage = () => {
 	const {
@@ -56,25 +54,7 @@ const HomePage = () => {
 			{results && (
 				<div>
 					<Background result={results}>
-						<div className='navbar'>
-							<img className='logo' src={logo} alt='Weather Hub Logo'></img>
-							<Link to='/' className="nav-item">
-								Home
-							</Link>
-							<Link to='/trip-planner' className="nav-item">
-								Trip Planner
-							</Link>
-							<label className='toggle-div'>
-								<span>°C</span>
-								<Toggle
-									defaultChecked={false}
-									className='toggle'
-									icons={false}
-									onChange={(event) => changeUnit(event.target.checked)}
-								/>
-								<span>°F</span>
-							</label>
-						</div>
+						<Navbar changeUnit={changeUnit} />
 
 						<div className='locator'>
 							<div className='searchbox'>

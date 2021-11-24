@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Navbar from '../../components/Navbar';
-
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import DatePicker from "react-modern-calendar-datepicker";
 
 function TripPlanner() {
 
-    const [inputDate, setInputDate] = useState(new Date());
+    const [inputDate, setInputDate] = useState(null);
 
     const [sourceItems,setSourceItems] = useState([]);
     const [destItems,setDestItems] = useState([]);
@@ -95,7 +96,7 @@ function TripPlanner() {
             <h1>Trip Planner</h1>
             <div className="trip-input">
                 <div className="trip-input-child">
-                    Source
+                    <h4>Source</h4>
                     <ReactSearchAutocomplete
                     items={sourceItems}
                     onSearch={(record) => autocompleteSource(record)}
@@ -106,7 +107,7 @@ function TripPlanner() {
                     />
                 </div>
                 <div className="trip-input-child">
-                    Destination
+                    <h4>Destination</h4>
                     <ReactSearchAutocomplete
                     items={destItems}
                     onSearch={(record) => autocompleteDest(record)}
@@ -117,15 +118,29 @@ function TripPlanner() {
                     />
                 </div>
                 <div className="trip-input-child">
-                    Travel date
-                <DatePicker
-                selected={inputDate}
-                onChange={(date) => setInputDate(date)}
-				className="black-border"
-                />
+                    <h4>Travel date</h4>
+                    <DatePicker
+                    value={inputDate}
+                    onChange={(selectedDay) => setInputDate(selectedDay)}
+                    inputPlaceholder="Select a day"
+                    shouldHighlightWeekends
+                    />
                 </div>
+				
             </div>
-            
+            <AwesomeButton type="primary">Submit</AwesomeButton>
+            <h2 style={{
+                marginBottom:'8em'
+            }}>Best Routes</h2>
+            <h2 style={{
+                marginBottom:'8em'
+            }}>Popular Restaraunts</h2>
+            <h2 style={{
+                marginBottom:'8em'
+            }}>Best Hotels to Stay</h2>
+            <h2 style={{
+                marginBottom:'8em'
+            }}>Tourist Spots to Check out</h2>
         </>
     )
 }

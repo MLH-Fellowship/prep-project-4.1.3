@@ -1,8 +1,7 @@
 import React, {useState, useEffect, memo} from 'react';
-import Select from 'react-select';
 import moment from "moment";
-import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
-import './hotels.css';
+import HotelCarousel from './hotelCarousel';
+import "./hotels.css";
 
 const HotelsNearBy = (props) => {
     const inputForm = props.inputForm;
@@ -11,8 +10,8 @@ const HotelsNearBy = (props) => {
 
     // destCity: string, the name of the destination city
     // arrDate: {day: xx, month: xx, year: xx}
-    const [adults, setAdults] = useState(1);
-    const [daysStaying, setDaysStaying] = useState(1);
+    const adults = 1;
+    const daysStaying = 1;
     const [hotelList, setHotelList] = useState([]);
 
     function getDateStr(date) {
@@ -21,11 +20,6 @@ const HotelsNearBy = (props) => {
         return `${date.year}-${monthStr}-${dayStr}`;
     }
 
-    // Get an array of [{label: 1, value: 1}, {label: 2, value: 2}, etc.]
-    function getOptions(numOptions) {
-        return new Array(numOptions).fill('')
-            .map((item, i) => {return {label: `${i+1}`, value: i+1};});
-    }
 
     function getHotels() {
         if (!destCity || !startDate) {
@@ -68,9 +62,11 @@ const HotelsNearBy = (props) => {
                             name: item.name,
                             address: `${address.streetAddress}, ${address.locality}, ${address.postalCode}`,
                             price: item.ratePlan.price.current,
+                            rating: item.starRating,
+                            image_url: item.optimizedThumbUrls.srpDesktop,
                         };
                     });
-                    setHotelList(newHotelList);
+                    setHotelList(newHotelList.slice(0,10));
                 });
             })
             .catch(error => {
@@ -78,53 +74,16 @@ const HotelsNearBy = (props) => {
             });
     }
 
-    getHotels();
-
-    const peopleOptions = getOptions(7);
-    const daysOptions = getOptions(30);
+    useEffect(() => {
+        getHotels();
+    },[inputForm]);
 
     return (
-        <div>
-            <div className="hotels-header">
-                <div className="hotels-people-select-text">
-                    Number of people:&nbsp;
-                </div>
-
-                <Select
-                    options={peopleOptions}
-                    className="hotels-people-select"
-                    defaultValue={peopleOptions[0]}
-                    onChange={(item) => setAdults(item.value)}
-                />
-
-                <div className="hotels-days-select-text">
-                    Number of days:&nbsp;
-                </div>
-
-                <Select
-                    options={daysOptions}
-                    className="hotels-days-select"
-                    defaultValue={daysOptions[0]}
-                    onChange={(item) => setDaysStaying(item.value)}
-                />
-            </div>
             <div className="hotel-list">
-                <Table data={hotelList} width={1000}>
-                    <Column width={250} align="center" fixed>
-                        <HeaderCell>Name</HeaderCell>
-                        <Cell dataKey="name" />
-                    </Column>
-                    <Column width={750} align="center" fixed>
-                        <HeaderCell>Address</HeaderCell>
-                        <Cell dataKey="address" />
-                    </Column>
-                    <Column width={250} align="center" fixed>
-                        <HeaderCell>Price</HeaderCell>
-                        <Cell dataKey="price" />
-                    </Column>
-                </Table>
+                {console.log(hotelList)}
+
+                <HotelCarousel hotels={hotelList}/>
             </div>
-        </div>
     )
 };
 

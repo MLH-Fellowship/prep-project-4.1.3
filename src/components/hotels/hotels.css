@@ -1,37 +1,3 @@
-.hotels-header {
-    display: grid;
-    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-}
-
-.hotels-people-select-text {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    text-align: center;
-}
-
-.hotels-people-select {
-    grid-column-start: 5;
-    grid-column-end: 6;
-    width: 100%;
-}
-
-.hotels-days-select-text {
-    grid-column-start: 6;
-    grid-column-end: 8;
-    text-align: center;
-}
-
-.hotels-days-select {
-    grid-column-start: 8;
-    grid-column-end: 9;
-    width: 100%;
-}
-
-.hotels-button {
-    grid-column-start: 10;
-    grid-column-end: 11;
-}
-
-.hotel-list {
-    width: 100%;
+.hotel-list{
+    margin-top: 40px;
 }

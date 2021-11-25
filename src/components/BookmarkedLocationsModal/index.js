@@ -1,5 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
+import { Scrollbars } from "react-custom-scrollbars";
 import BookmarkCard from "../BookmarkCard";
 
 const BookmarkedLocationsModal = ({ isOpen, closeModal, ...rest }) => {
@@ -18,12 +19,19 @@ const BookmarkedLocationsModal = ({ isOpen, closeModal, ...rest }) => {
       preventScroll
       {...rest}
     >
-      <h2 style={{ color: "black" }}>My Bookmarks</h2>
-      <div className="bookmark-container">
-        {bookmarkedLocations.map((place) => {
-          return <BookmarkCard place={place.name} />;
-        })}
-      </div>
+      <Scrollbars
+        className="custom-scrollbar"
+        autoHide
+        autoHideTimeout={500}
+        autoHideDuration={200}
+      >
+        <h2 style={{ color: "black" }}>My Bookmarks</h2>
+        <div className="bookmark-container">
+          {bookmarkedLocations.map((place) => {
+            return <BookmarkCard place={place.name} />;
+          })}
+        </div>
+      </Scrollbars>
     </ReactModal>
   );
 };

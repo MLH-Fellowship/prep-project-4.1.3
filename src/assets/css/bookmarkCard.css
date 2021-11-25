@@ -4,6 +4,7 @@
   padding: 10px;
   height: 80%;
   background-color: rgb(201, 201, 201);
+  color: #fff;
   border-radius: 15px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }

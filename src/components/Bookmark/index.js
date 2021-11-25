@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark } from "@fortawesome/free-solid-svg-icons";
-import useToggle from "../../helpers/customHooks/useToggle";
+import { faBookmark as Solidbookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as RegularBookmark } from "@fortawesome/free-regular-svg-icons";
 import BookmarkedLocationsModal from "../BookmarkedLocationsModal";
+import { useBookmarkContext } from "../../helpers/context/bookmark";
 
 const Bookmark = ({ cityRes }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
-  const [isOpen, toggleBookmarkModal] = useToggle(false);
+  const [isOpen, toggleBookmarkModal] = useBookmarkContext();
 
   useEffect(() => {
     if (cityRes?.name) {
@@ -85,15 +86,13 @@ const Bookmark = ({ cityRes }) => {
     <div className="bookmark">
       <button className="bookmark-btn" onClick={handleBookmarkLocation}>
         <abbr title={`${isBookmarked ? "Bookmarked" : "Add Bookmark"}`}>
-          <i
-            className={`fa-${
-              isBookmarked ? "solid" : "regular"
-            } fa-bookmark fa-lg`}
-          ></i>
+          {isBookmarked ? (
+            <FontAwesomeIcon icon={Solidbookmark} />
+          ) : (
+            <FontAwesomeIcon icon={RegularBookmark} />
+          )}
         </abbr>
       </button>
-
-      <button onClick={toggleBookmarkModal}>View Bookmarked Locations</button>
 
       {isOpen ? (
         <BookmarkedLocationsModal

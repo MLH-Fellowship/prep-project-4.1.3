@@ -1,0 +1,33 @@
+.trip-input{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2em;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.react-datepicker-popper{
+    /* position: inherit !important; */
+    transform: translate3d(0px,0px,0px) !important;
+}
+
+.trip-input-child{
+    min-width: 300px;
+    margin-bottom: 2em;
+}
+
+.react-datepicker__input-container input{
+    border: 1px solid black;
+}
+
+.DatePicker__calendarContainer.-top + .DatePicker__calendarArrow {
+    top: 0 !important;
+    bottom: 0 !important;
+    /* transform:none !important; */
+    /* animation:none !important; */
+  }
+
+  .DatePicker__calendarContainer.-top {
+    top: 0 !important;
+    bottom: 0 !important;
+  }

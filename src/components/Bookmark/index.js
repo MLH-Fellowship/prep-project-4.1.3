@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import useToggle from "../../helpers/customHooks/useToggle";
+import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark as Solidbookmark } from "@fortawesome/free-solid-svg-icons";
+import { faBookmark as RegularBookmark } from "@fortawesome/free-regular-svg-icons";
 import BookmarkedLocationsModal from "../BookmarkedLocationsModal";
+import { useBookmarkContext } from "../../helpers/context/bookmark";
 
-const Bookmark = ({ cityRes }) => {
+const Bookmark = ({ cityRes, useFahrenheit }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
-  const [isOpen, toggleBookmarkModal] = useToggle(false);
+  const [isOpen, toggleBookmarkModal] = useBookmarkContext();
 
   useEffect(() => {
     if (cityRes?.name) {
@@ -20,7 +24,6 @@ const Bookmark = ({ cityRes }) => {
   const handleBookmarkLocation = (e) => {
     const newLocation = {
       name: cityRes?.name,
-      coord: cityRes?.coord,
     };
 
     if (isLocationBookmarked(newLocation.name)) {
@@ -29,8 +32,17 @@ const Bookmark = ({ cityRes }) => {
     } else {
       addLocationToBookmark(newLocation);
       setIsBookmarked(true);
+
+      toast.success("Location bookmarked successfully.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    // console.log("Bookmarking Location", isLocationBookmarked(cityRes?.name));
   };
 
   const isLocationBookmarked = (locationName) => {
@@ -85,20 +97,19 @@ const Bookmark = ({ cityRes }) => {
     <div className="bookmark">
       <button className="bookmark-btn" onClick={handleBookmarkLocation}>
         <abbr title={`${isBookmarked ? "Bookmarked" : "Add Bookmark"}`}>
-          <i
-            className={`fa-${
-              isBookmarked ? "solid" : "regular"
-            } fa-bookmark fa-lg`}
-          ></i>
+          {isBookmarked ? (
+            <FontAwesomeIcon icon={Solidbookmark} />
+          ) : (
+            <FontAwesomeIcon icon={RegularBookmark} />
+          )}
         </abbr>
       </button>
-
-      <button onClick={toggleBookmarkModal}>View Bookmarked Locations</button>
 
       {isOpen ? (
         <BookmarkedLocationsModal
           isOpen={isOpen}
           closeModal={toggleBookmarkModal}
+          useFahrenheit={useFahrenheit}
         />
       ) : null}
     </div>

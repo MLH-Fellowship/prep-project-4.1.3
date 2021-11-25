@@ -1,29 +1,57 @@
 body {
-  background-color: #133667;
-  color: white;
   text-align: center;
 }
 
 .navbar {
   display: grid;
-  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-  width: 100%;
+  grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+  backdrop-filter: blur(15px) saturate(100%);
+  -webkit-backdrop-filter: blur(15px) saturate(100%);
+  background-color: rgba(19, 54, 103, 0.25);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.125);
+  border-left: 2px solid rgba(255, 255, 255, 0.125);
+  border-right: 2px solid rgba(255, 255, 255, 0.125);
+}
+
+.nav-item {
+  backdrop-filter: blur(25px) saturate(66%);
+  -webkit-backdrop-filter: blur(25px) saturate(66%);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.125);
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 9px 20px 9px;
 }
 
 .logo {
-  grid-column-start: 5;
-  grid-column-end: 7;
-  width: 100%;
-  margin-top: 5px;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  width: 70%;
   margin-bottom: 5px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.toggle-bookmark {
+  display: flex;
+  grid-column-start: 7;
+  grid-column-end: 8;
+  margin: auto auto auto auto;
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .toggle-div {
   display: flex;
   grid-column-start: 8;
-  grid-column-end: 9;
+  grid-column-end: 8;
   margin: auto auto auto auto;
   justify-content: center;
 }
@@ -34,11 +62,11 @@ body {
 }
 
 .toggle.react-toggle .react-toggle-track {
-  background-color: #19ab27;
+  background-color: skyblue;
 }
 
 .toggle.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: #128d15;
+  background-color: skyblue;
 }
 
 .locator {
@@ -51,16 +79,14 @@ body {
 
 .searchbox {
   display: flex;
-  position: relative;
   flex-direction: column;
   justify-content: center;
   width: 30%;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
   color: black;
-  border-radius: 8px 0 0 8px;
+  border-radius: 5px;
+  position: relative;
 }
 
 .bookmark {
@@ -109,16 +135,19 @@ input {
 @media screen and (max-width: 900px) {
   .locator {
     flex-direction: column;
-    height: 600px;
+    height: 800px;
     width: 100%;
     margin: auto;
   }
   .searchbox {
+    height: 35%;
     width: 80%;
     margin: auto;
+    justify-content: start;
   }
 
   .mymap {
+    height: 65%;
     width: 100%;
   }
 }

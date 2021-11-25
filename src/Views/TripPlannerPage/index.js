@@ -4,12 +4,14 @@ import Navbar from '../../components/Navbar';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import DatePicker from "react-modern-calendar-datepicker";
+import DatePicker, {utils} from "react-modern-calendar-datepicker";
 import HotelsNearBy from '../../components/hotels/hotels';
 
 function TripPlanner() {
 
-    const [inputDate, setInputDate] = useState(null);
+    const todayDict = utils().getToday();
+
+    const [inputDate, setInputDate] = useState(todayDict);
 
     const [sourceItems,setSourceItems] = useState([]);
     const [destItems,setDestItems] = useState([]);
@@ -133,6 +135,7 @@ function TripPlanner() {
                     value={inputDate}
                     onChange={(selectedDay) => setInputDate(selectedDay)}
                     inputPlaceholder="Select a day"
+                    minimumDate={todayDict}
                     shouldHighlightWeekends
                     />
                 </div>

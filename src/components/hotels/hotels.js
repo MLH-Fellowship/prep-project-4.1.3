@@ -2,7 +2,9 @@ import React, {useState, useEffect, memo} from 'react';
 import Select from 'react-select';
 import './hotels.css';
 
-const HotelsNearBy = (inputForm) => {
+const HotelsNearBy = (props) => {
+    const inputForm = props.inputForm;
+
     // destCity: string, the name of the destination city
     // arrDate: {day: xx, month: xx, year: xx}
     const [adults, setAdults] = useState(1);
@@ -24,6 +26,11 @@ const HotelsNearBy = (inputForm) => {
     const daysOptions = getOptions(30);
 
     useEffect(() => {
+        console.log(inputForm);
+        if (inputForm == null)
+            return;
+        const startDayStr = getDateStr(inputForm.date);
+        console.log(startDayStr);
     }, [adults, daysStaying]);
 
     return (

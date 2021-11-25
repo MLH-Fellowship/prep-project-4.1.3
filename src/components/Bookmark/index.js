@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import useToggle from "../../helpers/customHooks/useToggle";
 import BookmarkedLocationsModal from "../BookmarkedLocationsModal";
 

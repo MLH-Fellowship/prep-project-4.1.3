@@ -1,7 +1,7 @@
 import React, {useState, useEffect, memo} from 'react';
 import moment from "moment";
 import HotelCarousel from './hotelCarousel';
-import "./hotels.css";
+import "../../assets/css/hotels.css";
 
 const HotelsNearBy = (props) => {
     const inputForm = props.inputForm;

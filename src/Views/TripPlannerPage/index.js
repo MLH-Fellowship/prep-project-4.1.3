@@ -14,13 +14,13 @@ function TripPlanner() {
     const [sourceItems,setSourceItems] = useState([]);
     const [destItems,setDestItems] = useState([]);
 
-
-
     const [inputSource,setInputSource] = useState();
     const [inputDest,setInputDest] = useState();
 
     const [source,setSource] = useState();
     const [dest,setDest] = useState();
+
+    const [inputForm, setInputForm] = useState(null);
 
     const autocompleteSource = (item) => {
         setInputSource(item)
@@ -91,6 +91,15 @@ function TripPlanner() {
         console.log(item)
       }
 
+      const handleSubmit = () => {
+          let newForm = {
+              source: source,
+              dest: dest,
+              date: inputDate,
+          };
+          setInputForm(newForm);
+      }
+
     return (
         <>
 			<Navbar />
@@ -129,7 +138,12 @@ function TripPlanner() {
                 </div>
 				
             </div>
-            <AwesomeButton type="primary">Submit</AwesomeButton>
+            <AwesomeButton
+            type="primary"
+            onPress={() => handleSubmit()}
+            >
+                Submit
+            </AwesomeButton>
             <h2 style={{
                 marginBottom:'8em'
             }}>Best Routes</h2>
@@ -139,7 +153,9 @@ function TripPlanner() {
             <h2 style={{
                 marginBottom:'8em'
             }}>Best Hotels to Stay
-            <HotelsNearBy></HotelsNearBy>
+            <HotelsNearBy
+                inputForm={inputForm}
+            />
             </h2>
             <h2 style={{
                 marginBottom:'8em'

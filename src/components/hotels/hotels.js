@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import Select from 'react-select';
 import './hotels.css';
 
-const HotelsNearBy = (destCity, arrDate) => {
+const HotelsNearBy = (inputForm) => {
     // destCity: string, the name of the destination city
     // arrDate: {day: xx, month: xx, year: xx}
     const [adults, setAdults] = useState(1);
@@ -23,6 +23,9 @@ const HotelsNearBy = (destCity, arrDate) => {
     const peopleOptions = getOptions(9);
     const daysOptions = getOptions(30);
 
+    useEffect(() => {
+    }, [adults, daysStaying]);
+
     return (
         <div className="hotels-header">
             <div className="hotels-people-select-text">
@@ -30,10 +33,10 @@ const HotelsNearBy = (destCity, arrDate) => {
             </div>
 
             <Select
-            options={peopleOptions}
-            className="hotels-people-select"
-            defaultValue={peopleOptions[0]}
-            onChange={(item) => setAdults(item.value)}
+                options={peopleOptions}
+                className="hotels-people-select"
+                defaultValue={peopleOptions[0]}
+                onChange={(item) => setAdults(item.value)}
             />
 
             <div className="hotels-days-select-text">
@@ -41,14 +44,13 @@ const HotelsNearBy = (destCity, arrDate) => {
             </div>
 
             <Select
-            options={daysOptions}
-            className="hotels-days-select"
-            defaultValue={daysOptions[0]}
-            onChange={(item) => setDaysStaying(item.value)}
+                options={daysOptions}
+                className="hotels-days-select"
+                defaultValue={daysOptions[0]}
+                onChange={(item) => setDaysStaying(item.value)}
             />
-
         </div>
     )
 };
 
-export default HotelsNearBy;
+export default memo(HotelsNearBy);

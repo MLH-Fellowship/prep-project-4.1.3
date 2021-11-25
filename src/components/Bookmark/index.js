@@ -20,7 +20,6 @@ const Bookmark = ({ cityRes }) => {
   const handleBookmarkLocation = (e) => {
     const newLocation = {
       name: cityRes?.name,
-      coord: cityRes?.coord,
     };
 
     if (isLocationBookmarked(newLocation.name)) {
@@ -30,7 +29,6 @@ const Bookmark = ({ cityRes }) => {
       addLocationToBookmark(newLocation);
       setIsBookmarked(true);
     }
-    // console.log("Bookmarking Location", isLocationBookmarked(cityRes?.name));
   };
 
   const isLocationBookmarked = (locationName) => {

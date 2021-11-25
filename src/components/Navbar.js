@@ -15,29 +15,39 @@ const NavBar = (props) => {
 				</Navbar.Brand>
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link href="/" className='nav-item'>Home</Nav.Link>
-						<Nav.Link href="/trip-planner" className='nav-item'>Trip Planner</Nav.Link>
+						<Nav.Link href="/">
+							<div className='nav-item'>
+								Home
+							</div>
+						</Nav.Link>
+						<Nav.Link href="/trip-planner">
+							<div className='nav-item'>
+								Trip Planner
+							</div>
+						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 				<Navbar.Collapse className="justify-content-end">
 					<Navbar.Text>
-						{location.pathname !== '/trip-planner' && (
-							<label className='toggle-div'>
-								<span>°C</span>
-								<Toggle
-									defaultChecked={false}
-									className='toggle'
-									icons={false}
-									onChange={(event) => props.changeUnit(event.target.checked)}
-								/>
-								<span>°F</span>
-							</label>
-						)}
+						<div className='nav-item' style={{ marginTop: '8px' }}>
+							{location.pathname !== '/trip-planner' && (
+								<label className='toggle-div'>
+									<span>°C</span>
+									<Toggle
+										defaultChecked={false}
+										className='toggle'
+										icons={false}
+										onChange={(event) => props.changeUnit(event.target.checked)}
+									/>
+									<span>°F</span>
+								</label>
+							)}
+						</div>
 					</Navbar.Text>
 				</Navbar.Collapse>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			</Container>
-		</Navbar>
+		</Navbar >
 	);
 };
 

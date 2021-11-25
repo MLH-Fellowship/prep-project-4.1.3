@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "amadeus": "^5.7.0",
     "chart.js": "^3.6.0",
     "feather-icons": "^4.28.0",
     "leaflet": "^1.7.1",
@@ -30,6 +31,7 @@
     "react-snowfall": "^1.1.0",
     "react-toastify": "^8.1.0",
     "react-toggle": "^4.1.2",
+    "rsuite-table": "^5.2.1",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

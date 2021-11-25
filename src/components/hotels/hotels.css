@@ -4,25 +4,34 @@
 }
 
 .hotels-people-select-text {
-    grid-column-start: 2;
-    grid-column-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 5;
     text-align: center;
 }
 
 .hotels-people-select {
-    grid-column-start: 4;
-    grid-column-end: 5;
+    grid-column-start: 5;
+    grid-column-end: 6;
     width: 100%;
 }
 
 .hotels-days-select-text {
-    grid-column-start: 7;
-    grid-column-end: 9;
+    grid-column-start: 6;
+    grid-column-end: 8;
     text-align: center;
 }
 
 .hotels-days-select {
-    grid-column-start: 9;
-    grid-column-end: 10;
+    grid-column-start: 8;
+    grid-column-end: 9;
+    width: 100%;
+}
+
+.hotels-button {
+    grid-column-start: 10;
+    grid-column-end: 11;
+}
+
+.hotel-list {
     width: 100%;
 }

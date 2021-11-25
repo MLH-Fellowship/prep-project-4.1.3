@@ -19,14 +19,13 @@ const HomePage = () => {
   const {
     city,
     results,
-    isLoading,
     isLoaded,
     setCity,
     error,
     cityRes,
     fetchWeatherUsingCoordinates,
     changeUnit,
-    cityObj,
+    useFahrenheit,
     setCityObj,
   } = useWeather();
 
@@ -59,7 +58,7 @@ const HomePage = () => {
 
             <div className="locator">
               <div className="searchbox">
-                <Bookmark cityRes={cityRes} />
+                <Bookmark cityRes={cityRes} useFahrenheit={useFahrenheit} />
 
                 <div>
                   <h2>Enter a city below 👇</h2>

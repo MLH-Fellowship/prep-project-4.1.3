@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark as Solidbookmark } from "@fortawesome/free-solid-svg-icons";
 import { faBookmark as RegularBookmark } from "@fortawesome/free-regular-svg-icons";
 import BookmarkedLocationsModal from "../BookmarkedLocationsModal";
 import { useBookmarkContext } from "../../helpers/context/bookmark";
 
-const Bookmark = ({ cityRes }) => {
+const Bookmark = ({ cityRes, useFahrenheit }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const [isOpen, toggleBookmarkModal] = useBookmarkContext();
@@ -31,6 +32,16 @@ const Bookmark = ({ cityRes }) => {
     } else {
       addLocationToBookmark(newLocation);
       setIsBookmarked(true);
+
+      toast.success("Location bookmarked successfully.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -98,6 +109,7 @@ const Bookmark = ({ cityRes }) => {
         <BookmarkedLocationsModal
           isOpen={isOpen}
           closeModal={toggleBookmarkModal}
+          useFahrenheit={useFahrenheit}
         />
       ) : null}
     </div>

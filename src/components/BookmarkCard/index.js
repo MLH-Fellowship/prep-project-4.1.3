@@ -10,9 +10,8 @@ import sunny from "../Background/SunnyBackground/sunny.jpg";
 import thunder from "../Background/ThunderstromBackground/thunder-background.jpg";
 import tornado from "../Background/ThunderstromBackground/tornado-background.jpg";
 
-const BookmarkCard = ({ place }) => {
+const BookmarkCard = ({ place, useFahrenheit }) => {
   const BASE_URL = "https://api.openweathermap.org/data/2.5/";
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const [wind, setWind] = useState("");
   const [humidity, setHumidity] = useState("");
   const [icon, setIcon] = useState("");
@@ -28,8 +27,6 @@ const BookmarkCard = ({ place }) => {
   }
 
   const selectBackground = () => {
-    console.log("This is the desc inside the function:", weatherCondition);
-    console.log(typeof weatherCondition);
     if (weatherCondition === "Clear") return clear;
     else if (weatherCondition === "Sunny") return sunny;
     else if (weatherCondition === "Clouds") return cloud;
@@ -56,19 +53,24 @@ const BookmarkCard = ({ place }) => {
   };
 
   useEffect(() => {
+    let unit = useFahrenheit ? "imperial" : "metric";
+
     async function getDetails() {
       const { data } = await axios.get(
-        `${BASE_URL}weather?q=${place}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+        `${BASE_URL}weather?q=${place}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`
       );
+
       const { coord } = data; //long lat
       const { lat, lon } = coord;
+
       let oneApiData = await axios.get(
-        `${BASE_URL}onecall?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_APIKEY}`
+        `${BASE_URL}onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`
       );
+
       oneApiData = oneApiData.data;
       const { current } = oneApiData;
+
       setWeather(current.weather[0].main);
-      console.log(weatherCondition);
 
       setWind(current.wind_speed);
       setHumidity(current.humidity);
@@ -83,15 +85,19 @@ const BookmarkCard = ({ place }) => {
       const date = new Date().getDay();
       for (let i = date; i < date + 5; i++) requiredDays.push((i + 1) % 7);
 
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
       setWeekly(
         requiredDays.map((idx) => {
           return days[idx];
         })
       );
+
       const daily = oneApiData.daily;
       const filteredDailyData = daily.filter((ele, idx) => {
         return idx < 5;
       });
+
       setminTemp(
         filteredDailyData.map((dailyObject, idx) => {
           return dailyObject.temp.min;
@@ -104,8 +110,9 @@ const BookmarkCard = ({ place }) => {
         })
       );
     }
+
     getDetails();
-  }, []);
+  }, [place, useFahrenheit, weatherCondition]);
 
   return (
     <div
@@ -124,7 +131,8 @@ const BookmarkCard = ({ place }) => {
         </h3>
         <div className="bookmarkCard-temp">
           <h1 className="h1-heading">
-            {Math.floor(temperature).toPrecision(4) + " °C"}
+            {Math.floor(temperature).toPrecision(4) +
+              (useFahrenheit ? " °F" : " °C")}
           </h1>
           <div className="image">
             <img
@@ -142,12 +150,22 @@ const BookmarkCard = ({ place }) => {
           </tr>
           <tr>
             {minTemp.map((temp) => {
-              return <td>{Math.floor(temp).toPrecision(2) + " °C"}</td>;
+              return (
+                <td>
+                  {Math.floor(temp).toPrecision(2) +
+                    (useFahrenheit ? " °F" : " °C")}
+                </td>
+              );
             })}
           </tr>
           <tr>
             {maxTemp.map((temp) => {
-              return <td>{Math.floor(temp).toPrecision(2) + " °C"}</td>;
+              return (
+                <td>
+                  {Math.floor(temp).toPrecision(2) +
+                    (useFahrenheit ? " °F" : " °C")}
+                </td>
+              );
             })}
           </tr>
         </table>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import Navbar from '../../components/Navbar';
+import NavBar from '../../components/Navbar';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
@@ -92,7 +92,7 @@ function TripPlanner() {
 
     return (
         <>
-			<Navbar />
+			<NavBar />
             <h1>Trip Planner</h1>
             <div className="trip-input">
                 <div className="trip-input-child">

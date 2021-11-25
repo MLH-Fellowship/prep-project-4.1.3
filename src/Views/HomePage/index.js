@@ -12,7 +12,7 @@ import useWeather from '../../helpers/customHooks/useWeather';
 import SearchOption from '../../helpers/SearchOption/SearchOption';
 
 import 'react-toggle/style.css';
-import Navbar from '../../components/Navbar';
+import NavBar from '../../components/Navbar';
 
 const HomePage = () => {
 	const {
@@ -54,7 +54,7 @@ const HomePage = () => {
 			{results && (
 				<div>
 					<Background result={results}>
-						<Navbar changeUnit={changeUnit} />
+						<NavBar changeUnit={changeUnit} />
 
 						<div className='locator'>
 							<div className='searchbox'>

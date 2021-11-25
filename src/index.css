@@ -21,4 +21,5 @@ code {
 @import './assets/css/weatherCard.css';
 @import "./assets/css/MyMap.css";
 @import './assets/css/loader.css';
-@import './assets/css/Trip-Planner.css'
+@import './assets/css/Trip-Planner.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';

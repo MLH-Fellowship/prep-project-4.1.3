@@ -1,0 +1,26 @@
+.hotels-header {
+    display: grid;
+    grid-template-columns: 28% 8% 28% 8% 28%;
+}
+
+.hotels-people-select-text {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    text-align: end;
+}
+
+.hotels-people-select {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.hotels-days-select-text {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    text-align: end;
+}
+
+.hotels-days-select {
+    grid-column-start: 4;
+    grid-column-end: 5;
+}

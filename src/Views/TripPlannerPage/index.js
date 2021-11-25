@@ -5,6 +5,7 @@ import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
+import HotelsNearBy from '../../components/hotels/hotels';
 
 function TripPlanner() {
 
@@ -86,7 +87,7 @@ function TripPlanner() {
     const updateDest = (item) => {
         // the item selected
         setDest(item);
-        console.log("dest" + item);
+        console.log("dest");
         console.log(item)
       }
 
@@ -137,7 +138,9 @@ function TripPlanner() {
             }}>Popular Restaraunts</h2>
             <h2 style={{
                 marginBottom:'8em'
-            }}>Best Hotels to Stay</h2>
+            }}>Best Hotels to Stay
+            <HotelsNearBy></HotelsNearBy>
+            </h2>
             <h2 style={{
                 marginBottom:'8em'
             }}>Tourist Spots to Check out</h2>

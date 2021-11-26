@@ -50,7 +50,7 @@ const HotelsNearBy = (props) => {
                     method: "GET",
                     headers: {
                         "X-RapidAPI-Host": "hotels-com-provider.p.rapidapi.com",
-                        "X-RapidAPI-Key": process.env.REACT_APP_RAPIDAPI,
+                        "X-RapidAPI-Key": `${process.env.REACT_APP_RAPIDAPI}`,
                     }
                 })
                 .then(res => res.json())

@@ -93,6 +93,11 @@ const Bookmark = ({ cityRes, useFahrenheit }) => {
     );
   };
 
+  const clearBookmarks = () => {
+    localStorage.removeItem("BookmarkedLocations");
+    setIsBookmarked(false);
+  };
+
   return (
     <div className="bookmark">
       <button className="bookmark-btn" onClick={handleBookmarkLocation}>
@@ -108,6 +113,7 @@ const Bookmark = ({ cityRes, useFahrenheit }) => {
       {isOpen ? (
         <BookmarkedLocationsModal
           isOpen={isOpen}
+          clearBookmarks={clearBookmarks}
           closeModal={toggleBookmarkModal}
           useFahrenheit={useFahrenheit}
         />

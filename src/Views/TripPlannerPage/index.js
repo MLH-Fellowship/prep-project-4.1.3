@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import NavBar from '../../components/Navbar';
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
-import DatePicker from "react-modern-calendar-datepicker";
+import DatePicker, { utils } from "react-modern-calendar-datepicker";
+import HotelsNearBy from "../../components/hotels/hotels";
+import TripPlannerBackground from "../../components/Background/TripPlannerBackground";
 
 function TripPlanner() {
+    const todayDict = utils().getToday();
 
-    const [inputDate, setInputDate] = useState(null);
+    const [inputDate, setInputDate] = useState(todayDict);
 
     const [sourceItems,setSourceItems] = useState([]);
     const [destItems,setDestItems] = useState([]);
@@ -86,63 +89,118 @@ function TripPlanner() {
     const updateDest = (item) => {
         // the item selected
         setDest(item);
-        console.log("dest" + item);
+        console.log("dest");
         console.log(item)
       }
 
+    const handleSubmit = () => {
+      const url =
+        "https://geocode.search.hereapi.com/v1/geocode?" +
+        `q=${dest.name}` +
+        `&apiKey=${process.env.REACT_APP_HEREAPI}`;
+      fetch(url)
+        .then((res) => res.json())
+        .then((result) => {
+          const lon = result?.items[0].position.lng;
+          const lat = result?.items[0].position.lat;
+          let newForm = {
+            source: source,
+            dest: dest,
+            date: inputDate,
+            destLatitude: lat,
+            destLongitude: lon,
+          };
+          setInputForm(newForm);
+        })
+        .catch((error) => {
+          let newForm = {
+            source: source,
+            dest: dest,
+            date: inputDate,
+            destLatitude: null,
+            destLongitude: null,
+          };
+          setInputForm(newForm);
+        });
+    };
+
     return (
-        <>
-			<NavBar />
-            <h1>Trip Planner</h1>
-            <div className="trip-input">
-                <div className="trip-input-child">
-                    <h4>Source</h4>
-                    <ReactSearchAutocomplete
-                    items={sourceItems}
-                    onSearch={(record) => autocompleteSource(record)}
-                    onSelect={updateSource}
-                    autoFocus
-                    useCaching={false}
-                    placeholder="Type name of city here!!"
-                    />
-                </div>
-                <div className="trip-input-child">
-                    <h4>Destination</h4>
-                    <ReactSearchAutocomplete
-                    items={destItems}
-                    onSearch={(record) => autocompleteDest(record)}
-                    onSelect={updateDest}
-                    autoFocus
-                    useCaching={false}
-                    placeholder="Type name of city here!!"
-                    />
-                </div>
-                <div className="trip-input-child">
-                    <h4>Travel date</h4>
-                    <DatePicker
-                    value={inputDate}
-                    onChange={(selectedDay) => setInputDate(selectedDay)}
-                    inputPlaceholder="Select a day"
-                    shouldHighlightWeekends
-                    />
-                </div>
-				
+      <>
+        <TripPlannerBackground>
+          <NavBar />
+          <h1 className="text-design">Trip Planner</h1>
+          <div className="trip-input">
+            <div className="trip-input-child">
+              <h4 className="text-design">Source</h4>
+              <ReactSearchAutocomplete
+                items={sourceItems}
+                onSearch={(record) => autocompleteSource(record)}
+                onSelect={updateSource}
+                autoFocus
+                useCaching={false}
+                placeholder="Type name of city here!!"
+              />
             </div>
-            <AwesomeButton type="primary">Submit</AwesomeButton>
-            <h2 style={{
-                marginBottom:'8em'
-            }}>Best Routes</h2>
-            <h2 style={{
-                marginBottom:'8em'
-            }}>Popular Restaraunts</h2>
-            <h2 style={{
-                marginBottom:'8em'
-            }}>Best Hotels to Stay</h2>
-            <h2 style={{
-                marginBottom:'8em'
-            }}>Tourist Spots to Check out</h2>
-        </>
+            <div className="trip-input-child">
+              <h4 className="text-design">Destination</h4>
+              <ReactSearchAutocomplete
+                items={destItems}
+                onSearch={(record) => autocompleteDest(record)}
+                onSelect={updateDest}
+                autoFocus
+                useCaching={false}
+                placeholder="Type name of city here!!"
+              />
+            </div>
+            <div className="trip-input-child">
+              <h4 className="text-design">Travel date</h4>
+              <DatePicker
+                value={inputDate}
+                onChange={(selectedDay) => setInputDate(selectedDay)}
+                inputPlaceholder="Select a day"
+                minimumDate={todayDict}
+                shouldHighlightWeekends
+              />
+            </div>
+          </div>
+          <div className="submit-button">
+            <AwesomeButton
+              type="primary"
+              size="medium"
+              onPress={() => handleSubmit()}
+            >
+              Submit
+            </AwesomeButton>
+          </div>
+          <h2 className="text-design">Best Hotels to Stay</h2>
+          <HotelsNearBy inputForm={inputForm} />
+          <h2
+            style={{
+              marginBottom: "8em",
+            }}
+            className="text-design"
+          >
+            Best Routes
+          </h2>
+          <h2
+            style={{
+              marginBottom: "8em",
+            }}
+            className="text-design"
+          >
+            Popular Restaraunts
+          </h2>
+          <h2
+            style={{
+              marginBottom: "8em",
+            }}
+            className="text-design"
+          >
+            Tourist Spots to Check out
+          </h2>
+        </TripPlannerBackground>
+      </>
     )
 }
 
-export default TripPlanner
+export default TripPlanner;

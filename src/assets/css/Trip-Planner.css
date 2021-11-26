@@ -6,6 +6,15 @@
     flex-wrap: wrap;
 }
 
+.text-design {
+    font-weight: 500;
+    text-shadow: 1.5px 1.5px #333333;
+}
+
+.submit-button {
+    margin-top: 100px;
+}
+
 .react-datepicker-popper{
     /* position: inherit !important; */
     transform: translate3d(0px,0px,0px) !important;

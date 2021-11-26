@@ -16,6 +16,7 @@ code {
     monospace;
 }
 
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import "./assets/css/App.css";
 @import "./assets/css/requiredThings.css";
 @import "./assets/css/weatherCard.css";

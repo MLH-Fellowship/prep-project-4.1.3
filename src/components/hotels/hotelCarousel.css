@@ -1,0 +1,27 @@
+/* .slides .slick-prev,
+.slides .slick-next {
+  background-color: black;
+} */
+
+.slides {
+  position: relative;
+}
+
+.slides .slick-prev,
+.slides .slick-next {
+  position: absolute;
+  top: 33%;
+  z-index:1;
+}
+
+.slides .slick-prev {
+  left: 2%;
+}
+
+.slides .slick-next {
+  right: 2%;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: "#000" !important;
+}

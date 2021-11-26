@@ -16,10 +16,10 @@ code {
     monospace;
 }
 
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import './assets/css/App.css';
 @import './assets/css/requiredThings.css';
 @import './assets/css/weatherCard.css';
 @import "./assets/css/MyMap.css";
 @import './assets/css/loader.css';
 @import './assets/css/Trip-Planner.css';
-@import 'bootstrap/dist/css/bootstrap.min.css';

@@ -24,6 +24,8 @@ function TripPlanner() {
     const [source,setSource] = useState();
     const [dest,setDest] = useState();
 
+    const [inputForm, setInputForm] = useState(null);  
+
     const autocompleteSource = (item) => {
         setInputSource(item)
         const url =

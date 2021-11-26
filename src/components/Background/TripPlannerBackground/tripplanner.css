@@ -1,0 +1,13 @@
+#trip-planner {
+  background: url(./trip_planner.jpg) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+
+.background {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-attachment: fixed !important;
+  color: whitesmoke;
+}

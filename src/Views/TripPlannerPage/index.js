@@ -94,12 +94,33 @@ function TripPlanner() {
       }
 
       const handleSubmit = () => {
-          let newForm = {
-              source: source,
-              dest: dest,
-              date: inputDate,
-          };
-          setInputForm(newForm);
+        const url = "https://geocode.search.hereapi.com/v1/geocode?" +
+            `q=${dest.name}` +
+            `&apiKey=${process.env.REACT_APP_HEREAPI}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(result => {
+                const lon = result?.items[0].position.lng;
+                const lat = result?.items[0].position.lat;
+                let newForm = {
+                    source: source,
+                    dest: dest,
+                    date: inputDate,
+                    destLatitude: lat,
+                    destLongitude: lon,
+                };
+                setInputForm(newForm);
+            })
+            .catch(error => {
+                let newForm = {
+                    source: source,
+                    dest: dest,
+                    date: inputDate,
+                    destLatitude: null,
+                    destLongitude: null,
+                };
+                setInputForm(newForm);
+            });
       }
 
     return (

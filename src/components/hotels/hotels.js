@@ -25,58 +25,48 @@ const HotelsNearBy = (props) => {
         if (!destCity || !startDate) {
             return;
         }
-        const url = "https://geocode.search.hereapi.com/v1/geocode?" +
-            `q=${destCity}` +
-            `&apiKey=${process.env.REACT_APP_HEREAPI}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(result => {
-                const lon = result?.items[0].position.lng;
-                const lat = result?.items[0].position.lat;
-                const startDayStr = getDateStr(startDate);
-                const endDayStr = moment(startDayStr, "YYYY-MM-DD")
-                                    .add(daysStaying, "days")
-                                    .format("YYYY-MM-DD");
-                const queryUrl = "https://hotels-com-provider.p.rapidapi.com/v1/hotels/nearby?";
-                const queryParams = `latitude=${lat}` +
-                `&longitude=${lon}` +
-                `&currency=USD` +
-                `&checkin_date=${startDayStr}` +
-                `&checkout_date=${endDayStr}` +
-                `&locale=en_US` +
-                `&adults_number=${adults}` +
-                `&sort_order=STAR_RATING_HIGHEST_FIRST`;
-                fetch(`${queryUrl}${queryParams}`, {
-                    method: "GET",
-                    headers: {
-                        "X-RapidAPI-Host": "hotels-com-provider.p.rapidapi.com",
-                        "X-RapidAPI-Key": `${process.env.REACT_APP_RAPIDAPI}`,
-                    }
-                })
-                .then(res => res.json())
-                .then(result => {
-                    console.log(result);
-                    let newHotelList = result.searchResults.results.map(item => {
-                        let address = item.address;
-                        return {
-                            name: item.name,
-                            address: `${address.streetAddress}, ${address.locality}, ${address.postalCode}`,
-                            price: item.ratePlan.price.current,
-                            rating: item.starRating,
-                            image_url: item.optimizedThumbUrls.srpDesktop,
-                            booking_url: `https://www.hotels.com/ho${item.id}/?`
-                                + `q-check-in=${startDayStr}`
-                                + `&q-check-out=${endDayStr}`
-                                + `&q-rooms=1`
-                                + `&q-room-0-adults=${adults}`,
-                        };
-                    });
-                    setHotelList(newHotelList.slice(0,10));
-                });
-            })
-            .catch(error => {
-                console.log(error);
+        const lon = inputForm.destLongitude;
+        const lat = inputForm.destLatitude;
+        const startDayStr = getDateStr(startDate);
+        const endDayStr = moment(startDayStr, "YYYY-MM-DD")
+                            .add(daysStaying, "days")
+                            .format("YYYY-MM-DD");
+        const queryUrl = "https://hotels-com-provider.p.rapidapi.com/v1/hotels/nearby?";
+        const queryParams = `latitude=${lat}` +
+        `&longitude=${lon}` +
+        `&currency=USD` +
+        `&checkin_date=${startDayStr}` +
+        `&checkout_date=${endDayStr}` +
+        `&locale=en_US` +
+        `&adults_number=${adults}` +
+        `&sort_order=STAR_RATING_HIGHEST_FIRST`;
+        fetch(`${queryUrl}${queryParams}`, {
+            method: "GET",
+            headers: {
+                "X-RapidAPI-Host": "hotels-com-provider.p.rapidapi.com",
+                "X-RapidAPI-Key": `${process.env.REACT_APP_RAPIDAPI}`,
+            }
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result);
+            let newHotelList = result.searchResults.results.map(item => {
+                let address = item.address;
+                return {
+                    name: item.name,
+                    address: `${address.streetAddress}, ${address.locality}, ${address.postalCode}`,
+                    price: item.ratePlan.price.current,
+                    rating: item.starRating,
+                    image_url: item.optimizedThumbUrls.srpDesktop,
+                    booking_url: `https://www.hotels.com/ho${item.id}/?`
+                        + `q-check-in=${startDayStr}`
+                        + `&q-check-out=${endDayStr}`
+                        + `&q-rooms=1`
+                        + `&q-room-0-adults=${adults}`,
+                };
             });
+            setHotelList(newHotelList.slice(0,10));
+        });
     }
 
     useEffect(() => {

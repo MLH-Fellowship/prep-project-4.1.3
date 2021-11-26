@@ -64,6 +64,11 @@ const HotelsNearBy = (props) => {
                             price: item.ratePlan.price.current,
                             rating: item.starRating,
                             image_url: item.optimizedThumbUrls.srpDesktop,
+                            booking_url: `https://www.hotels.com/ho${item.id}/?`
+                                + `q-check-in=${startDayStr}`
+                                + `&q-check-out=${endDayStr}`
+                                + `&q-rooms=1`
+                                + `&q-room-0-adults=${adults}`,
                         };
                     });
                     setHotelList(newHotelList.slice(0,10));

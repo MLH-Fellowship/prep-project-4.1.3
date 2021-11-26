@@ -23,11 +23,11 @@ export default function HotelCard({hotel}) {
         <Typography variant="body2" color="text.secondary">
           Rating: {hotel.rating} <FontAwesomeIcon icon={faStar}/>
           <br/>
-          Price: {hotel.price}/per day
+          Price: {hotel.price}/day
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" onClick={() => window.open(hotel.booking_url)}>Learn More</Button>
       </CardActions>
     </Card>
   );

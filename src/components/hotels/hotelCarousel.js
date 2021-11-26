@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
-import "./hotelCarousel.css";
+import "../../assets/css/hotelCarousel.css";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;

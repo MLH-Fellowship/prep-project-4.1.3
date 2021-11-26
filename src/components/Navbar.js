@@ -1,11 +1,15 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Container, Navbar, Nav } from 'react-bootstrap';
-import Toggle from 'react-toggle';
-import logo from '../assets/img/logo.svg';
+import Toggle from "react-toggle";
+import logo from "../assets/img/logo.svg";
+import { useBookmarkContext } from "../helpers/context/bookmark";
 
 const NavBar = (props) => {
 	const location = useLocation();
+  
+  const [, toggleBookmarkModal] = useBookmarkContext();
+
 	return (
 		<Navbar bg="navbar" expand="lg" variant='dark'>
 			<Container>
@@ -31,16 +35,28 @@ const NavBar = (props) => {
 					<Navbar.Text>
 						<div className='nav-item' style={{ marginTop: '8px' }}>
 							{location.pathname !== '/trip-planner' && (
-								<label className='toggle-div'>
-									<span>°C</span>
-									<Toggle
-										defaultChecked={false}
-										className='toggle'
-										icons={false}
-										onChange={(event) => props.changeUnit(event.target.checked)}
-									/>
-									<span>°F</span>
-								</label>
+                <>
+                  <Link
+                    to="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleBookmarkModal();
+                    }}
+                    className="toggle-bookmark"
+                  >
+                    Bookmarks
+                  </Link>
+                  <label className='toggle-div'>
+                    <span>°C</span>
+                    <Toggle
+                      defaultChecked={false}
+                      className='toggle'
+                      icons={false}
+                      onChange={(event) => props.changeUnit(event.target.checked)}
+                    />
+                    <span>°F</span>
+                  </label>
+                </>
 							)}
 						</div>
 					</Navbar.Text>

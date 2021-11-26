@@ -39,17 +39,8 @@ body {
 	margin-right: 20px;
 }
 
-.toggle-bookmark {
-  display: flex;
-  grid-column-start: 7;
-  grid-column-end: 8;
-  margin: auto auto auto auto;
-  color: rgba(255, 255, 255, 0.75);
-}
-
 .toggle-div {
 	display: flex;
-	margin: auto auto auto auto;
 	justify-content: center;
 }
 

@@ -7,8 +7,8 @@ import { useBookmarkContext } from "../helpers/context/bookmark";
 
 const NavBar = (props) => {
 	const location = useLocation();
-  
-  const [, toggleBookmarkModal] = useBookmarkContext();
+
+	const [, toggleBookmarkModal] = useBookmarkContext();
 
 	return (
 		<Navbar bg="navbar" expand="lg" variant='dark'>
@@ -31,36 +31,35 @@ const NavBar = (props) => {
 						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
-				<Navbar.Collapse className="justify-content-end">
-					<Navbar.Text>
-						<div className='nav-item' style={{ marginTop: '8px' }}>
-							{location.pathname !== '/trip-planner' && (
-                <>
-                  <Link
-                    to="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleBookmarkModal();
-                    }}
-                    className="toggle-bookmark"
-                  >
-                    Bookmarks
-                  </Link>
-                  <label className='toggle-div'>
-                    <span>°C</span>
-                    <Toggle
-                      defaultChecked={false}
-                      className='toggle'
-                      icons={false}
-                      onChange={(event) => props.changeUnit(event.target.checked)}
-                    />
-                    <span>°F</span>
-                  </label>
-                </>
-							)}
-						</div>
-					</Navbar.Text>
-				</Navbar.Collapse>
+				{location.pathname !== '/trip-planner' && (
+					<Navbar.Collapse className="justify-content-end">
+						<Nav>
+							<Nav.Link
+								href="#"
+								onClick={(e) => {
+									e.preventDefault();
+									toggleBookmarkModal();
+								}}
+							>
+								<div className='nav-item'>
+									Bookmarks
+								</div>
+							</Nav.Link>
+							<Navbar.Text>
+								<label className='toggle-div nav-item'>
+									<span>°C  </span>
+									<Toggle
+										defaultChecked={false}
+										className='toggle'
+										icons={false}
+										onChange={(event) => props.changeUnit(event.target.checked)}
+									/>
+									<span>  °F</span>
+								</label>
+							</Navbar.Text>
+						</Nav>
+					</Navbar.Collapse>
+				)}
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			</Container>
 		</Navbar >
